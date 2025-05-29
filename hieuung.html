@@ -1,0 +1,1967 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>50 Direction MEGA Rain - Ultimate Love Storm</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: radial-gradient(circle, #000 0%, #1a0033 50%, #000 100%);
+            overflow: hidden;
+            font-family: 'Arial', sans-serif;
+            height: 100vh;
+            width: 100vw;
+            position: fixed;
+            perspective: 2000px;
+            touch-action: none;
+        }
+
+        /* UI Layer */
+        .ui-layer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        .ui-layer > * {
+            pointer-events: auto;
+        }
+
+        /* Container MEGA */
+        .container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            transform-style: preserve-3d;
+            transition: none;
+            will-change: transform;
+            transform-origin: center center;
+            transform: translate3d(0,0,0);
+        }
+
+        .container.smooth {
+            transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        /* Hiệu ứng tim bay */
+        .floating-hearts {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            transform-style: preserve-3d;
+        }
+
+        .heart {
+            position: absolute;
+            color: #ff6b6b;
+            font-size: 20px;
+            will-change: transform;
+            backface-visibility: hidden;
+            animation: floatUp 7s infinite linear;
+            filter: drop-shadow(0 0 8px rgba(255, 107, 107, 0.6));
+        }
+
+        @keyframes floatUp {
+            0% { transform: translate3d(0, 100vh, 0) scale(1); opacity: 1; }
+            50% { transform: translate3d(0, 50vh, 100px) scale(1.2); opacity: 1; }
+            100% { transform: translate3d(0, -50px, 0) scale(0.8); opacity: 0; }
+        }
+
+        /* Hiệu ứng chữ bay MEGA */
+        .floating-text {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 5;
+            transform-style: preserve-3d;
+        }
+
+        .flying-text {
+            position: absolute;
+            font-size: 1rem;
+            font-weight: bold;
+            color: #fff;
+            white-space: nowrap;
+            will-change: transform, opacity;
+            backface-visibility: hidden;
+            text-align: center;
+            text-shadow: 0 0 15px currentColor;
+            border-radius: 8px;
+            padding: 2px 6px;
+        }
+
+        /* 15 màu siêu đỉnh */
+        .flying-text.pink { color: #ff69b4; background: rgba(255, 105, 180, 0.1); }
+        .flying-text.blue { color: #00ffff; background: rgba(0, 255, 255, 0.1); }
+        .flying-text.green { color: #00ff00; background: rgba(0, 255, 0, 0.1); }
+        .flying-text.purple { color: #9966ff; background: rgba(153, 102, 255, 0.1); }
+        .flying-text.red { color: #ff0000; background: rgba(255, 0, 0, 0.1); }
+        .flying-text.orange { color: #ff8800; background: rgba(255, 136, 0, 0.1); }
+        .flying-text.yellow { color: #ffff00; background: rgba(255, 255, 0, 0.1); }
+        .flying-text.cyan { color: #00ffaa; background: rgba(0, 255, 170, 0.1); }
+        .flying-text.magenta { color: #ff00ff; background: rgba(255, 0, 255, 0.1); }
+        .flying-text.lime { color: #88ff00; background: rgba(136, 255, 0, 0.1); }
+        .flying-text.gold { color: #ffd700; background: rgba(255, 215, 0, 0.1); }
+        .flying-text.silver { color: #c0c0c0; background: rgba(192, 192, 192, 0.1); }
+        .flying-text.coral { color: #ff7f50; background: rgba(255, 127, 80, 0.1); }
+        .flying-text.violet { color: #ee82ee; background: rgba(238, 130, 238, 0.1); }
+        .flying-text.turquoise { color: #40e0d0; background: rgba(64, 224, 208, 0.1); }
+
+        /* 50 MEGA ANIMATIONS SIÊU ĐỈNH! */
+        
+        /* Group 1: Basic 8 directions */
+        @keyframes fallFromTop { 0% { transform: translate3d(0, -80px, 0); opacity: 0; } 15% { opacity: 1; } 85% { opacity: 1; } 100% { transform: translate3d(0, calc(100vh + 50px), 0); opacity: 0; } }
+        @keyframes fallFromBottom { 0% { transform: translate3d(0, calc(100vh + 50px), 0); opacity: 0; } 15% { opacity: 1; } 85% { opacity: 1; } 100% { transform: translate3d(0, -80px, 0); opacity: 0; } }
+        @keyframes fallFromLeft { 0% { transform: translate3d(-80px, 0, 0); opacity: 0; } 15% { opacity: 1; } 85% { opacity: 1; } 100% { transform: translate3d(calc(100vw + 50px), 0, 0); opacity: 0; } }
+        @keyframes fallFromRight { 0% { transform: translate3d(calc(100vw + 50px), 0, 0); opacity: 0; } 15% { opacity: 1; } 85% { opacity: 1; } 100% { transform: translate3d(-80px, 0, 0); opacity: 0; } }
+        @keyframes fallDiagonalTL { 0% { transform: translate3d(-50px, -50px, 0); opacity: 0; } 15% { opacity: 1; } 85% { opacity: 1; } 100% { transform: translate3d(calc(100vw + 50px), calc(100vh + 50px), 0); opacity: 0; } }
+        @keyframes fallDiagonalTR { 0% { transform: translate3d(calc(100vw + 50px), -50px, 0); opacity: 0; } 15% { opacity: 1; } 85% { opacity: 1; } 100% { transform: translate3d(-50px, calc(100vh + 50px), 0); opacity: 0; } }
+        @keyframes fallDiagonalBL { 0% { transform: translate3d(-50px, calc(100vh + 50px), 0); opacity: 0; } 15% { opacity: 1; } 85% { opacity: 1; } 100% { transform: translate3d(calc(100vw + 50px), -50px, 0); opacity: 0; } }
+        @keyframes fallDiagonalBR { 0% { transform: translate3d(calc(100vw + 50px), calc(100vh + 50px), 0); opacity: 0; } 15% { opacity: 1; } 85% { opacity: 1; } 100% { transform: translate3d(-50px, -50px, 0); opacity: 0; } }
+
+        /* Group 2: 3D Depth Effects (10) */
+        @keyframes fall3DForward { 0% { transform: translate3d(0, -50px, 400px) scale(0.2); opacity: 0; } 30% { transform: translate3d(0, 30vh, 200px) scale(0.7); opacity: 1; } 70% { transform: translate3d(0, 70vh, -200px) scale(1.3); opacity: 1; } 100% { transform: translate3d(0, calc(100vh + 50px), -400px) scale(0.3); opacity: 0; } }
+        @keyframes fall3DBackward { 0% { transform: translate3d(0, calc(100vh + 50px), -400px) scale(0.2); opacity: 0; } 30% { transform: translate3d(0, 70vh, -200px) scale(0.7); opacity: 1; } 70% { transform: translate3d(0, 30vh, 200px) scale(1.3); opacity: 1; } 100% { transform: translate3d(0, -50px, 400px) scale(0.3); opacity: 0; } }
+        @keyframes fall3DLeft { 0% { transform: translate3d(-200px, 0, 300px) scale(0.3); opacity: 0; } 50% { transform: translate3d(50vw, 0, 0) scale(1.2); opacity: 1; } 100% { transform: translate3d(calc(100vw + 200px), 0, -300px) scale(0.3); opacity: 0; } }
+        @keyframes fall3DRight { 0% { transform: translate3d(calc(100vw + 200px), 0, 300px) scale(0.3); opacity: 0; } 50% { transform: translate3d(50vw, 0, 0) scale(1.2); opacity: 1; } 100% { transform: translate3d(-200px, 0, -300px) scale(0.3); opacity: 0; } }
+        @keyframes fall3DTopDeep { 0% { transform: translate3d(0, -100px, 500px) scale(0.1); opacity: 0; } 40% { transform: translate3d(0, 40vh, 100px) scale(0.9); opacity: 1; } 80% { transform: translate3d(0, 80vh, -300px) scale(1.4); opacity: 1; } 100% { transform: translate3d(0, calc(100vh + 100px), -500px) scale(0.1); opacity: 0; } }
+        @keyframes fall3DBottomDeep { 0% { transform: translate3d(0, calc(100vh + 100px), -500px) scale(0.1); opacity: 0; } 40% { transform: translate3d(0, 60vh, -300px) scale(0.9); opacity: 1; } 80% { transform: translate3d(0, 20vh, 100px) scale(1.4); opacity: 1; } 100% { transform: translate3d(0, -100px, 500px) scale(0.1); opacity: 0; } }
+        @keyframes fall3DCenterZoom { 0% { transform: translate3d(50vw, 50vh, 600px) scale(0.05); opacity: 0; } 30% { transform: translate3d(50vw, 50vh, 200px) scale(0.8); opacity: 0.8; } 50% { transform: translate3d(50vw, 50vh, 0) scale(1.5); opacity: 1; } 70% { transform: translate3d(50vw, 50vh, -200px) scale(1.2); opacity: 1; } 100% { transform: translate3d(50vw, 50vh, -600px) scale(0.05); opacity: 0; } }
+        @keyframes fall3DSpiral { 0% { transform: translate3d(50vw, -50px, 300px) rotateY(0deg) rotateZ(0deg) scale(0.3); opacity: 0; } 25% { transform: translate3d(calc(50vw + 150px), 25vh, 150px) rotateY(90deg) rotateZ(90deg) scale(0.8); opacity: 1; } 50% { transform: translate3d(50vw, 50vh, 0) rotateY(180deg) rotateZ(180deg) scale(1.2); opacity: 1; } 75% { transform: translate3d(calc(50vw - 150px), 75vh, -150px) rotateY(270deg) rotateZ(270deg) scale(0.9); opacity: 1; } 100% { transform: translate3d(50vw, calc(100vh + 50px), -300px) rotateY(360deg) rotateZ(360deg) scale(0.3); opacity: 0; } }
+        @keyframes fall3DOrbit { 0% { transform: translate3d(50vw, 50vh, 400px) rotateY(0deg) rotateX(0deg) scale(0.2); opacity: 0; } 20% { transform: translate3d(calc(50vw + 200px), calc(50vh - 100px), 200px) rotateY(72deg) rotateX(72deg) scale(0.7); opacity: 1; } 40% { transform: translate3d(calc(50vw + 200px), calc(50vh + 100px), 0) rotateY(144deg) rotateX(144deg) scale(1); opacity: 1; } 60% { transform: translate3d(calc(50vw - 200px), calc(50vh + 100px), -200px) rotateY(216deg) rotateX(216deg) scale(1.1); opacity: 1; } 80% { transform: translate3d(calc(50vw - 200px), calc(50vh - 100px), -300px) rotateY(288deg) rotateX(288deg) scale(0.8); opacity: 1; } 100% { transform: translate3d(50vw, 50vh, -400px) rotateY(360deg) rotateX(360deg) scale(0.2); opacity: 0; } }
+        @keyframes fall3DTornado { 0% { transform: translate3d(50vw, calc(100vh + 100px), 300px) rotateY(0deg) rotateZ(0deg) scale(0.2); opacity: 0; } 25% { transform: translate3d(calc(50vw + 100px), 75vh, 150px) rotateY(180deg) rotateZ(90deg) scale(0.8); opacity: 1; } 50% { transform: translate3d(calc(50vw - 100px), 50vh, 0) rotateY(360deg) rotateZ(180deg) scale(1.3); opacity: 1; } 75% { transform: translate3d(calc(50vw + 150px), 25vh, -150px) rotateY(540deg) rotateZ(270deg) scale(1); opacity: 1; } 100% { transform: translate3d(50vw, -100px, -300px) rotateY(720deg) rotateZ(360deg) scale(0.2); opacity: 0; } }
+
+        /* Group 3: Wave & Flow Effects (10) */
+        @keyframes waveHorizontal { 0% { transform: translate3d(-100px, 0, 0) rotateY(0deg); opacity: 0; } 25% { transform: translate3d(25vw, 20vh, 100px) rotateY(90deg); opacity: 1; } 50% { transform: translate3d(75vw, 40vh, 0) rotateY(180deg); opacity: 1; } 75% { transform: translate3d(50vw, 60vh, -100px) rotateY(270deg); opacity: 1; } 100% { transform: translate3d(calc(100vw + 100px), 80vh, 0) rotateY(360deg); opacity: 0; } }
+        @keyframes waveVertical { 0% { transform: translate3d(0, -100px, 0) rotateX(0deg); opacity: 0; } 25% { transform: translate3d(20vw, 25vh, 100px) rotateX(90deg); opacity: 1; } 50% { transform: translate3d(40vw, 75vh, 0) rotateX(180deg); opacity: 1; } 75% { transform: translate3d(60vw, 50vh, -100px) rotateX(270deg); opacity: 1; } 100% { transform: translate3d(80vw, calc(100vh + 100px), 0) rotateX(360deg); opacity: 0; } }
+        @keyframes waveSine { 0% { transform: translate3d(0, 50vh, 0); opacity: 0; } 25% { transform: translate3d(25vw, 20vh, 50px); opacity: 1; } 50% { transform: translate3d(50vw, 80vh, 0); opacity: 1; } 75% { transform: translate3d(75vw, 30vh, -50px); opacity: 1; } 100% { transform: translate3d(100vw, 70vh, 0); opacity: 0; } }
+        @keyframes waveCosine { 0% { transform: translate3d(0, 20vh, 0); opacity: 0; } 25% { transform: translate3d(25vw, 80vh, 50px); opacity: 1; } 50% { transform: translate3d(50vw, 30vh, 0); opacity: 1; } 75% { transform: translate3d(75vw, 70vh, -50px); opacity: 1; } 100% { transform: translate3d(100vw, 40vh, 0); opacity: 0; } }
+        @keyframes waveSpiral3D { 0% { transform: translate3d(50vw, 50vh, 200px) rotateY(0deg) rotateZ(0deg); opacity: 0; } 20% { transform: translate3d(calc(50vw + 100px), calc(50vh - 50px), 100px) rotateY(72deg) rotateZ(45deg); opacity: 1; } 40% { transform: translate3d(calc(50vw + 50px), calc(50vh + 100px), 0) rotateY(144deg) rotateZ(90deg); opacity: 1; } 60% { transform: translate3d(calc(50vw - 100px), calc(50vh + 50px), -100px) rotateY(216deg) rotateZ(135deg); opacity: 1; } 80% { transform: translate3d(calc(50vw - 50px), calc(50vh - 100px), -150px) rotateY(288deg) rotateZ(180deg); opacity: 1; } 100% { transform: translate3d(50vw, 50vh, -200px) rotateY(360deg) rotateZ(225deg); opacity: 0; } }
+        @keyframes waveCircular { 0% { transform: translate3d(50vw, 50vh, 0) rotateZ(0deg) translateX(100px); opacity: 0; } 25% { transform: translate3d(50vw, 50vh, 100px) rotateZ(90deg) translateX(100px); opacity: 1; } 50% { transform: translate3d(50vw, 50vh, 0) rotateZ(180deg) translateX(100px); opacity: 1; } 75% { transform: translate3d(50vw, 50vh, -100px) rotateZ(270deg) translateX(100px); opacity: 1; } 100% { transform: translate3d(50vw, 50vh, 0) rotateZ(360deg) translateX(100px); opacity: 0; } }
+        @keyframes waveInfinity { 0% { transform: translate3d(30vw, 50vh, 0) rotateZ(0deg) scale(0.5); opacity: 0; } 25% { transform: translate3d(70vw, 30vh, 100px) rotateZ(180deg) scale(1); opacity: 1; } 50% { transform: translate3d(30vw, 50vh, 0) rotateZ(360deg) scale(1.2); opacity: 1; } 75% { transform: translate3d(70vw, 70vh, -100px) rotateZ(540deg) scale(0.8); opacity: 1; } 100% { transform: translate3d(30vw, 50vh, 0) rotateZ(720deg) scale(0.3); opacity: 0; } }
+        @keyframes wavePendulum { 0% { transform: translate3d(50vw, 20vh, 0) rotateZ(-45deg); opacity: 0; } 25% { transform: translate3d(70vw, 40vh, 50px) rotateZ(0deg); opacity: 1; } 50% { transform: translate3d(50vw, 60vh, 0) rotateZ(45deg); opacity: 1; } 75% { transform: translate3d(30vw, 80vh, -50px) rotateZ(0deg); opacity: 1; } 100% { transform: translate3d(50vw, calc(100vh + 20px), 0) rotateZ(-45deg); opacity: 0; } }
+        @keyframes waveDouble { 0% { transform: translate3d(0, 50vh, 0) scale(1) rotateY(0deg); opacity: 0; } 16% { transform: translate3d(16vw, 30vh, 50px) scale(1.1) rotateY(60deg); opacity: 1; } 33% { transform: translate3d(33vw, 70vh, 0) scale(0.9) rotateY(120deg); opacity: 1; } 50% { transform: translate3d(50vw, 20vh, -50px) scale(1.3) rotateY(180deg); opacity: 1; } 66% { transform: translate3d(66vw, 80vh, 0) scale(0.8) rotateY(240deg); opacity: 1; } 83% { transform: translate3d(83vw, 40vh, 50px) scale(1.1) rotateY(300deg); opacity: 1; } 100% { transform: translate3d(100vw, 50vh, 0) scale(1) rotateY(360deg); opacity: 0; } }
+        @keyframes waveTriple { 0% { transform: translate3d(0, 33vh, 0); opacity: 0; } 11% { transform: translate3d(11vw, 66vh, 30px); opacity: 1; } 22% { transform: translate3d(22vw, 10vh, -30px); opacity: 1; } 33% { transform: translate3d(33vw, 90vh, 30px); opacity: 1; } 44% { transform: translate3d(44vw, 20vh, -30px); opacity: 1; } 55% { transform: translate3d(55vw, 80vh, 30px); opacity: 1; } 66% { transform: translate3d(66vw, 30vh, -30px); opacity: 1; } 77% { transform: translate3d(77vw, 70vh, 30px); opacity: 1; } 88% { transform: translate3d(88vw, 40vh, -30px); opacity: 1; } 100% { transform: translate3d(100vw, 60vh, 0); opacity: 0; } }
+
+        /* Group 4: Complex Pattern Effects (10) */
+        @keyframes patternZigzag { 0% { transform: translate3d(-50px, -50px, 0) rotateZ(0deg); opacity: 0; } 20% { transform: translate3d(20vw, 20vh, 50px) rotateZ(72deg); opacity: 1; } 40% { transform: translate3d(40vw, 80vh, 0) rotateZ(144deg); opacity: 1; } 60% { transform: translate3d(60vw, 30vh, -50px) rotateZ(216deg); opacity: 1; } 80% { transform: translate3d(80vw, 90vh, 0) rotateZ(288deg); opacity: 1; } 100% { transform: translate3d(calc(100vw + 50px), 40vh, -50px) rotateZ(360deg); opacity: 0; } }
+        @keyframes patternStar { 0% { transform: translate3d(50vw, 50vh, 200px) rotateY(0deg) rotateZ(0deg) scale(0.3); opacity: 0; } 14% { transform: translate3d(calc(50vw + 100px), calc(50vh - 100px), 100px) rotateY(51deg) rotateZ(51deg) scale(0.7); opacity: 1; } 28% { transform: translate3d(calc(50vw - 100px), calc(50vh - 50px), 0) rotateY(102deg) rotateZ(102deg) scale(1); opacity: 1; } 42% { transform: translate3d(calc(50vw + 50px), calc(50vh + 100px), -100px) rotateY(153deg) rotateZ(153deg) scale(1.2); opacity: 1; } 56% { transform: translate3d(calc(50vw - 50px), 50vh, -50px) rotateY(204deg) rotateZ(204deg) scale(0.9); opacity: 1; } 70% { transform: translate3d(calc(50vw + 80px), calc(50vh - 80px), 50px) rotateY(255deg) rotateZ(255deg) scale(1.1); opacity: 1; } 84% { transform: translate3d(calc(50vw - 80px), calc(50vh + 80px), -80px) rotateY(306deg) rotateZ(306deg) scale(0.8); opacity: 1; } 100% { transform: translate3d(50vw, 50vh, -200px) rotateY(357deg) rotateZ(357deg) scale(0.3); opacity: 0; } }
+        @keyframes patternHeart { 0% { transform: translate3d(50vw, calc(100vh + 50px), 100px) scale(0.5); opacity: 0; } 25% { transform: translate3d(calc(50vw - 50px), 70vh, 50px) scale(0.8); opacity: 1; } 50% { transform: translate3d(50vw, 40vh, 0) scale(1.2); opacity: 1; } 75% { transform: translate3d(calc(50vw + 50px), 70vh, -50px) scale(1); opacity: 1; } 100% { transform: translate3d(50vw, -50px, -100px) scale(0.5); opacity: 0; } }
+        @keyframes patternFigure8 { 0% { transform: translate3d(30vw, 30vh, 0) rotateZ(0deg) scale(0.5); opacity: 0; } 12.5% { transform: translate3d(70vw, 30vh, 50px) rotateZ(45deg) scale(0.8); opacity: 1; } 25% { transform: translate3d(70vw, 70vh, 0) rotateZ(90deg) scale(1); opacity: 1; } 37.5% { transform: translate3d(30vw, 70vh, -50px) rotateZ(135deg) scale(1.2); opacity: 1; } 50% { transform: translate3d(30vw, 30vh, 0) rotateZ(180deg) scale(1); opacity: 1; } 62.5% { transform: translate3d(70vw, 30vh, 50px) rotateZ(225deg) scale(0.9); opacity: 1; } 75% { transform: translate3d(70vw, 70vh, 0) rotateZ(270deg) scale(1.1); opacity: 1; } 87.5% { transform: translate3d(30vw, 70vh, -50px) rotateZ(315deg) scale(0.7); opacity: 1; } 100% { transform: translate3d(30vw, 30vh, 0) rotateZ(360deg) scale(0.3); opacity: 0; } }
+        @keyframes patternSpirograph { 0% { transform: translate3d(50vw, 50vh, 200px) rotateY(0deg) rotateZ(0deg) translateX(0); opacity: 0; } 10% { transform: translate3d(50vw, 50vh, 150px) rotateY(36deg) rotateZ(72deg) translateX(80px); opacity: 1; } 20% { transform: translate3d(50vw, 50vh, 100px) rotateY(72deg) rotateZ(144deg) translateX(60px); opacity: 1; } 30% { transform: translate3d(50vw, 50vh, 50px) rotateY(108deg) rotateZ(216deg) translateX(100px); opacity: 1; } 40% { transform: translate3d(50vw, 50vh, 0) rotateY(144deg) rotateZ(288deg) translateX(40px); opacity: 1; } 50% { transform: translate3d(50vw, 50vh, -50px) rotateY(180deg) rotateZ(360deg) translateX(120px); opacity: 1; } 60% { transform: translate3d(50vw, 50vh, -100px) rotateY(216deg) rotateZ(432deg) translateX(20px); opacity: 1; } 70% { transform: translate3d(50vw, 50vh, -50px) rotateY(252deg) rotateZ(504deg) translateX(90px); opacity: 1; } 80% { transform: translate3d(50vw, 50vh, 0) rotateY(288deg) rotateZ(576deg) translateX(70px); opacity: 1; } 90% { transform: translate3d(50vw, 50vh, 50px) rotateY(324deg) rotateZ(648deg) translateX(50px); opacity: 1; } 100% { transform: translate3d(50vw, 50vh, -200px) rotateY(360deg) rotateZ(720deg) translateX(0); opacity: 0; } }
+        @keyframes patternFlower { 0% { transform: translate3d(50vw, 50vh, 150px) rotateZ(0deg) scale(0.3); opacity: 0; } 16% { transform: translate3d(calc(50vw + 60px), calc(50vh - 60px), 100px) rotateZ(60deg) scale(0.7); opacity: 1; } 33% { transform: translate3d(calc(50vw + 60px), calc(50vh + 60px), 50px) rotateZ(120deg) scale(1); opacity: 1; } 50% { transform: translate3d(calc(50vw - 60px), calc(50vh + 60px), 0) rotateZ(180deg) scale(1.2); opacity: 1; } 66% { transform: translate3d(calc(50vw - 60px), calc(50vh - 60px), -50px) rotateZ(240deg) scale(1); opacity: 1; } 83% { transform: translate3d(50vw, calc(50vh - 120px), -100px) rotateZ(300deg) scale(0.8); opacity: 1; } 100% { transform: translate3d(50vw, 50vh, -150px) rotateZ(360deg) scale(0.3); opacity: 0; } }
+        @keyframes patternDNA { 0% { transform: translate3d(30vw, -50px, 0) rotateY(0deg) rotateZ(0deg); opacity: 0; } 25% { transform: translate3d(70vw, 25vh, 100px) rotateY(90deg) rotateZ(90deg); opacity: 1; } 50% { transform: translate3d(30vw, 50vh, 0) rotateY(180deg) rotateZ(180deg); opacity: 1; } 75% { transform: translate3d(70vw, 75vh, -100px) rotateY(270deg) rotateZ(270deg); opacity: 1; } 100% { transform: translate3d(30vw, calc(100vh + 50px), 0) rotateY(360deg) rotateZ(360deg); opacity: 0; } }
+        @keyframes patternGalaxy { 0% { transform: translate3d(50vw, 50vh, 300px) rotateY(0deg) rotateZ(0deg) translateX(0) scale(0.2); opacity: 0; } 12.5% { transform: translate3d(50vw, 50vh, 200px) rotateY(45deg) rotateZ(90deg) translateX(80px) scale(0.5); opacity: 1; } 25% { transform: translate3d(50vw, 50vh, 100px) rotateY(90deg) rotateZ(180deg) translateX(120px) scale(0.8); opacity: 1; } 37.5% { transform: translate3d(50vw, 50vh, 0) rotateY(135deg) rotateZ(270deg) translateX(100px) scale(1.1); opacity: 1; } 50% { transform: translate3d(50vw, 50vh, -100px) rotateY(180deg) rotateZ(360deg) translateX(150px) scale(1.3); opacity: 1; } 62.5% { transform: translate3d(50vw, 50vh, -50px) rotateY(225deg) rotateZ(450deg) translateX(80px) scale(1); opacity: 1; } 75% { transform: translate3d(50vw, 50vh, 0) rotateY(270deg) rotateZ(540deg) translateX(60px) scale(0.7); opacity: 1; } 87.5% { transform: translate3d(50vw, 50vh, 100px) rotateY(315deg) rotateZ(630deg) translateX(40px) scale(0.4); opacity: 1; } 100% { transform: translate3d(50vw, 50vh, -300px) rotateY(360deg) rotateZ(720deg) translateX(0) scale(0.1); opacity: 0; } }
+        @keyframes patternMandala { 0% { transform: translate3d(50vw, 50vh, 200px) rotateY(0deg) rotateZ(0deg) rotateX(0deg) scale(0.3); opacity: 0; } 14% { transform: translate3d(50vw, 50vh, 150px) rotateY(51deg) rotateZ(102deg) rotateX(51deg) scale(0.6); opacity: 1; } 28% { transform: translate3d(50vw, 50vh, 100px) rotateY(102deg) rotateZ(204deg) rotateX(102deg) scale(0.9); opacity: 1; } 42% { transform: translate3d(50vw, 50vh, 50px) rotateY(153deg) rotateZ(306deg) rotateX(153deg) scale(1.2); opacity: 1; } 56% { transform: translate3d(50vw, 50vh, 0) rotateY(204deg) rotateZ(408deg) rotateX(204deg) scale(1.4); opacity: 1; } 70% { transform: translate3d(50vw, 50vh, -50px) rotateY(255deg) rotateZ(510deg) rotateX(255deg) scale(1.1); opacity: 1; } 84% { transform: translate3d(50vw, 50vh, -100px) rotateY(306deg) rotateZ(612deg) rotateX(306deg) scale(0.8); opacity: 1; } 100% { transform: translate3d(50vw, 50vh, -200px) rotateY(357deg) rotateZ(714deg) rotateX(357deg) scale(0.2); opacity: 0; } }
+        @keyframes patternChaos { 0% { transform: translate3d(calc(50vw + 200px), -100px, 250px) rotateY(0deg) rotateZ(0deg) rotateX(0deg) scale(0.2); opacity: 0; } 10% { transform: translate3d(calc(50vw - 150px), 10vh, 150px) rotateY(73deg) rotateZ(147deg) rotateX(220deg) scale(0.6); opacity: 1; } 20% { transform: translate3d(calc(50vw + 100px), 30vh, -50px) rotateY(146deg) rotateZ(292deg) rotateX(73deg) scale(1.1); opacity: 1; } 30% { transform: translate3d(calc(50vw - 200px), 20vh, 100px) rotateY(219deg) rotateZ(73deg) rotateX(146deg) scale(0.8); opacity: 1; } 40% { transform: translate3d(calc(50vw + 50px), 60vh, -150px) rotateY(292deg) rotateZ(219deg) rotateX(292deg) scale(1.3); opacity: 1; } 50% { transform: translate3d(calc(50vw - 100px), 80vh, 200px) rotateY(0deg) rotateZ(365deg) rotateX(0deg) scale(0.9); opacity: 1; } 60% { transform: translate3d(calc(60% { transform: translate3d(calc(50vw + 180px), 45vh, -100px) rotateY(365deg) rotateZ(146deg) rotateX(365deg) scale(1.2); opacity: 1; } 70% { transform: translate3d(calc(50vw - 80px), 90vh, 50px) rotateY(438deg) rotateZ(584deg) rotateX(219deg) scale(0.7); opacity: 1; } 80% { transform: translate3d(calc(50vw + 120px), 15vh, -200px) rotateY(511deg) rotateZ(292deg) rotateX(511deg) scale(1.4); opacity: 1; } 90% { transform: translate3d(calc(50vw - 250px), 70vh, 150px) rotateY(584deg) rotateZ(730deg) rotateX(146deg) scale(0.5); opacity: 1; } 100% { transform: translate3d(calc(50vw + 300px), calc(100vh + 100px), -300px) rotateY(657deg) rotateZ(876deg) rotateX(657deg) scale(0.1); opacity: 0; } }
+
+        /* Group 5: Bounce & Physics Effects (12) */
+        @keyframes bounceCenter { 0% { transform: translate3d(50vw, -100px, 200px) scale(0.3); opacity: 0; } 20% { transform: translate3d(50vw, 20vh, 100px) scale(0.8); opacity: 1; } 40% { transform: translate3d(50vw, 45vh, 0) scale(1.3); opacity: 1; } 50% { transform: translate3d(50vw, 35vh, 50px) scale(1.1); opacity: 1; } 60% { transform: translate3d(50vw, 55vh, -50px) scale(1.2); opacity: 1; } 70% { transform: translate3d(50vw, 50vh, 0) scale(1); opacity: 1; } 80% { transform: translate3d(50vw, 65vh, -100px) scale(0.9); opacity: 1; } 90% { transform: translate3d(50vw, 80vh, -150px) scale(0.7); opacity: 1; } 100% { transform: translate3d(50vw, calc(100vh + 100px), -200px) scale(0.3); opacity: 0; } }
+        @keyframes bounceLeft { 0% { transform: translate3d(-150px, 50vh, 100px) scale(0.4); opacity: 0; } 25% { transform: translate3d(20vw, 30vh, 50px) scale(0.9); opacity: 1; } 40% { transform: translate3d(35vw, 50vh, 0) scale(1.2); opacity: 1; } 50% { transform: translate3d(25vw, 45vh, 25px) scale(1); opacity: 1; } 65% { transform: translate3d(45vw, 55vh, -25px) scale(1.1); opacity: 1; } 80% { transform: translate3d(70vw, 70vh, -75px) scale(0.8); opacity: 1; } 100% { transform: translate3d(calc(100vw + 150px), 50vh, -100px) scale(0.4); opacity: 0; } }
+        @keyframes bounceRight { 0% { transform: translate3d(calc(100vw + 150px), 50vh, 100px) scale(0.4); opacity: 0; } 25% { transform: translate3d(80vw, 30vh, 50px) scale(0.9); opacity: 1; } 40% { transform: translate3d(65vw, 50vh, 0) scale(1.2); opacity: 1; } 50% { transform: translate3d(75vw, 45vh, 25px) scale(1); opacity: 1; } 65% { transform: translate3d(55vw, 55vh, -25px) scale(1.1); opacity: 1; } 80% { transform: translate3d(30vw, 70vh, -75px) scale(0.8); opacity: 1; } 100% { transform: translate3d(-150px, 50vh, -100px) scale(0.4); opacity: 0; } }
+        @keyframes bounceMultiple { 0% { transform: translate3d(50vw, -50px, 150px) scale(0.5); opacity: 0; } 15% { transform: translate3d(50vw, 15vh, 100px) scale(0.8); opacity: 1; } 25% { transform: translate3d(50vw, 10vh, 75px) scale(0.9); opacity: 1; } 35% { transform: translate3d(50vw, 25vh, 50px) scale(1.1); opacity: 1; } 45% { transform: translate3d(50vw, 20vh, 25px) scale(1); opacity: 1; } 55% { transform: translate3d(50vw, 35vh, 0) scale(1.2); opacity: 1; } 65% { transform: translate3d(50vw, 30vh, -25px) scale(1.1); opacity: 1; } 75% { transform: translate3d(50vw, 50vh, -50px) scale(1); opacity: 1; } 85% { transform: translate3d(50vw, 70vh, -100px) scale(0.8); opacity: 1; } 100% { transform: translate3d(50vw, calc(100vh + 50px), -150px) scale(0.5); opacity: 0; } }
+        @keyframes bounceDiagonal { 0% { transform: translate3d(-50px, -50px, 100px) scale(0.4); opacity: 0; } 20% { transform: translate3d(20vw, 20vh, 50px) scale(0.8); opacity: 1; } 35% { transform: translate3d(35vw, 15vh, 25px) scale(1); opacity: 1; } 50% { transform: translate3d(50vw, 35vh, 0) scale(1.3); opacity: 1; } 65% { transform: translate3d(65vw, 55vh, -25px) scale(1.1); opacity: 1; } 80% { transform: translate3d(80vw, 75vh, -50px) scale(0.9); opacity: 1; } 100% { transform: translate3d(calc(100vw + 50px), calc(100vh + 50px), -100px) scale(0.4); opacity: 0; } }
+        @keyframes bounceRandom { 0% { transform: translate3d(30vw, -50px, 120px) scale(0.3); opacity: 0; } 12% { transform: translate3d(70vw, 15vh, 80px) scale(0.7); opacity: 1; } 24% { transform: translate3d(20vw, 35vh, 40px) scale(1.1); opacity: 1; } 36% { transform: translate3d(80vw, 25vh, 0) scale(0.9); opacity: 1; } 48% { transform: translate3d(40vw, 55vh, -40px) scale(1.3); opacity: 1; } 60% { transform: translate3d(90vw, 45vh, -20px) scale(1); opacity: 1; } 72% { transform: translate3d(10vw, 75vh, -80px) scale(0.8); opacity: 1; } 84% { transform: translate3d(60vw, 85vh, -60px) scale(1.1); opacity: 1; } 100% { transform: translate3d(85vw, calc(100vh + 50px), -120px) scale(0.3); opacity: 0; } }
+        @keyframes bounceElastic { 0% { transform: translate3d(50vw, -80px, 150px) scale(0.2); opacity: 0; } 20% { transform: translate3d(50vw, 40vh, 75px) scale(1.4); opacity: 1; } 30% { transform: translate3d(50vw, 20vh, 50px) scale(0.8); opacity: 1; } 40% { transform: translate3d(50vw, 50vh, 25px) scale(1.2); opacity: 1; } 50% { transform: translate3d(50vw, 35vh, 0) scale(0.9); opacity: 1; } 60% { transform: translate3d(50vw, 55vh, -25px) scale(1.1); opacity: 1; } 70% { transform: translate3d(50vw, 45vh, -50px) scale(0.95); opacity: 1; } 80% { transform: translate3d(50vw, 60vh, -75px) scale(1.05); opacity: 1; } 90% { transform: translate3d(50vw, 70vh, -100px) scale(0.85); opacity: 1; } 100% { transform: translate3d(50vw, calc(100vh + 80px), -150px) scale(0.2); opacity: 0; } }
+        @keyframes bounceGravity { 0% { transform: translate3d(50vw, -100px, 200px) scale(0.5); opacity: 0; } 25% { transform: translate3d(50vw, 30vh, 100px) scale(0.9); opacity: 1; } 35% { transform: translate3d(50vw, 50vh, 50px) scale(1.2); opacity: 1; } 42% { transform: translate3d(50vw, 40vh, 75px) scale(1.1); opacity: 1; } 50% { transform: translate3d(50vw, 55vh, 25px) scale(1.15); opacity: 1; } 57% { transform: translate3d(50vw, 50vh, 50px) scale(1.05); opacity: 1; } 65% { transform: translate3d(50vw, 60vh, 0) scale(1.1); opacity: 1; } 72% { transform: translate3d(50vw, 57vh, 25px) scale(1.02); opacity: 1; } 80% { transform: translate3d(50vw, 65vh, -25px) scale(1.05); opacity: 1; } 90% { transform: translate3d(50vw, 75vh, -75px) scale(0.9); opacity: 1; } 100% { transform: translate3d(50vw, calc(100vh + 100px), -200px) scale(0.5); opacity: 0; } }
+        @keyframes bounceSpring { 0% { transform: translate3d(50vw, calc(100vh + 100px), 150px) scale(0.4); opacity: 0; } 15% { transform: translate3d(50vw, 70vh, 100px) scale(0.8); opacity: 1; } 25% { transform: translate3d(50vw, 30vh, 50px) scale(1.3); opacity: 1; } 35% { transform: translate3d(50vw, 60vh, 75px) scale(0.9); opacity: 1; } 45% { transform: translate3d(50vw, 40vh, 25px) scale(1.1); opacity: 1; } 55% { transform: translate3d(50vw, 55vh, 50px) scale(0.95); opacity: 1; } 65% { transform: translate3d(50vw, 45vh, 0) scale(1.05); opacity: 1; } 75% { transform: translate3d(50vw, 52vh, 25px) scale(0.98); opacity: 1; } 85% { transform: translate3d(50vw, 48vh, -25px) scale(1.02); opacity: 1; } 95% { transform: translate3d(50vw, 50vh, -50px) scale(1); opacity: 1; } 100% { transform: translate3d(50vw, -100px, -150px) scale(0.4); opacity: 0; } }
+        @keyframes bouncePinball { 0% { transform: translate3d(10vw, 10vh, 100px) scale(0.6); opacity: 0; } 12% { transform: translate3d(90vw, 30vh, 50px) scale(1); opacity: 1; } 24% { transform: translate3d(20vw, 50vh, 0) scale(1.2); opacity: 1; } 36% { transform: translate3d(80vw, 70vh, -50px) scale(0.9); opacity: 1; } 48% { transform: translate3d(30vw, 20vh, 25px) scale(1.1); opacity: 1; } 60% { transform: translate3d(70vw, 80vh, -25px) scale(1); opacity: 1; } 72% { transform: translate3d(40vw, 40vh, -75px) scale(1.3); opacity: 1; } 84% { transform: translate3d(60vw, 60vh, -50px) scale(0.8); opacity: 1; } 100% { transform: translate3d(90vw, 90vh, -100px) scale(0.6); opacity: 0; } }
+        @keyframes bounceRubber { 0% { transform: translate3d(50vw, -50px, 100px) scale(1, 0.3); opacity: 0; } 20% { transform: translate3d(50vw, 25vh, 50px) scale(0.7, 1.4); opacity: 1; } 30% { transform: translate3d(50vw, 15vh, 25px) scale(1.2, 0.8); opacity: 1; } 40% { transform: translate3d(50vw, 35vh, 0) scale(0.9, 1.2); opacity: 1; } 50% { transform: translate3d(50vw, 30vh, -25px) scale(1.1, 0.9); opacity: 1; } 60% { transform: translate3d(50vw, 45vh, -50px) scale(0.95, 1.05); opacity: 1; } 70% { transform: translate3d(50vw, 42vh, -25px) scale(1.02, 0.98); opacity: 1; } 80% { transform: translate3d(50vw, 50vh, -75px) scale(0.98, 1.02); opacity: 1; } 90% { transform: translate3d(50vw, 70vh, -50px) scale(1, 1); opacity: 1; } 100% { transform: translate3d(50vw, calc(100vh + 50px), -100px) scale(1, 0.3); opacity: 0; } }
+
+        /* UI Controls */
+        .rotation-display {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: rgba(0, 0, 0, 0.9);
+            color: #fff;
+            padding: 8px 12px;
+            border-radius: 10px;
+            font-size: 0.7rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            min-width: 200px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .rotation-display div {
+            margin: 1px 0;
+        }
+
+        .controls {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+
+        .control-btn {
+            background: rgba(255, 105, 180, 0.5);
+            color: #fff;
+            border: 1px solid rgba(255, 105, 180, 0.7);
+            padding: 6px 10px;
+            border-radius: 8px;
+            font-size: 0.6rem;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(255, 105, 180, 0.3);
+        }
+
+        .control-btn:hover {
+            background: rgba(255, 105, 180, 0.7);
+            transform: scale(1.05);
+            box-shadow: 0 4px 15px rgba(255, 105, 180, 0.5);
+        }
+
+        .direction-display {
+            position: absolute;
+            bottom: 120px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 255, 0, 0.5);
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 8px;
+            font-size: 0.6rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 255, 0, 0.6);
+            text-align: center;
+            max-width: 95vw;
+            box-shadow: 0 2px 15px rgba(0, 255, 0, 0.3);
+        }
+
+        .text-counter {
+            position: absolute;
+            bottom: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255, 105, 0, 0.5);
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 8px;
+            font-size: 0.6rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 105, 0, 0.6);
+            box-shadow: 0 2px 15px rgba(255, 105, 0, 0.3);
+        }
+
+        .performance-display {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 150, 255, 0.5);
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 8px;
+            font-size: 0.6rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 150, 255, 0.6);
+            box-shadow: 0 2px 15px rgba(0, 150, 255, 0.3);
+        }
+
+        .mega-display {
+            position: absolute;
+            bottom: 5px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255, 0, 255, 0.5);
+            color: #fff;
+            padding: 4px 8px;
+            border-radius: 8px;
+            font-size: 0.55rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 0, 255, 0.6);
+            text-align: center;
+            max-width: 98vw;
+            box-shadow: 0 2px 15px rgba(255, 0, 255, 0.3);
+        }
+
+        @media (max-width: 480px) {
+            .flying-text { font-size: 0.8rem; }
+            .heart { font-size: 18px; }
+            .rotation-display, .control-btn, 
+            .text-counter, .direction-display, .performance-display, .mega-display {
+                font-size: 0.55rem;
+                padding: 4px 6px;
+            }
+            .controls { gap: 4px; }
+            .rotation-display { min-width: 160px; }
+        }
+
+        /* Particle effects */
+        .particle-system {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 50%;
+            animation: particleFloat 8s infinite linear;
+        }
+
+        @keyframes particleFloat {
+            0% { transform: translate3d(0, 100vh, 0); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translate3d(0, -50px, 0); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <!-- UI Layer -->
+    <div class="ui-layer">
+        <div class="rotation-display" id="rotationDisplay">
+            <div>🚀 <strong>50-Direction MEGA STORM</strong></div>
+            <div>Góc Y: <span id="rotY">0°</span></div>
+            <div>Zoom: <span id="zoomLevel">100%</span></div>
+            <div>Mode: <span id="currentMode">MEGA</span></div>
+            <div>Active: <span id="activeAnimations">50 directions</span></div>
+        </div>
+        
+        <div class="controls">
+            <button class="control-btn" onclick="resetRotation()">🔄 Reset</button>
+            <button class="control-btn" onclick="autoRotate()">🌀 Auto</button>
+            <button class="control-btn" onclick="toggleChaosMode()">🔥 Chaos</button>
+            <button class="control-btn" onclick="toggleMegaMode()">💥 MEGA</button>
+            <button class="control-btn" onclick="toggleParticles()">✨ Particles</button>
+        </div>
+        
+        <div class="direction-display" id="directionDisplay">
+            🎯 <span id="currentDirections">50 hướng siêu đỉnh đang hoạt động</span>
+        </div>
+        
+        <div class="text-counter" id="textCounter">
+            💖 Texts: <span id="textCount">0</span> | Speed: <span id="currentSpeed">MEGA</span>
+        </div>
+        
+        <div class="performance-display" id="performanceDisplay">
+            ⚡ FPS: <span id="fps">60</span> | Quality: <span id="quality">ULTRA</span> | Load: <span id="systemLoad">0%</span>
+        </div>
+        
+        <div class="mega-display" id="megaDisplay">
+            🌟 <strong>50 MEGA DIRECTIONS:</strong> 8 Basic + 10 3D + 10 Wave + 10 Pattern + 12 Bounce = ULTIMATE LOVE STORM! 🌟
+        </div>
+    </div>
+
+    <!-- Container MEGA -->
+    <div class="container" id="container">
+        <div class="particle-system"></div>
+        <div class="floating-hearts"></div>
+        <div class="floating-text"></div>
+    </div>
+
+    <script>
+        // MEGA Love Words - 40 từ siêu ngọt
+        const loveWords = [
+            'Yêu Em ❤️', 'Love You 💕', 'Miss You 💖', 'Kiss 💋',
+            'Hug 🤗', 'Baby 👶', 'Darling 💞', 'Sweetheart 💓',
+            'Forever 💝', 'My Love 💗', 'Babe 💘', 'Cutie 😘',
+            'Angel 👼', 'Princess 👸', 'Honey 🍯', 'Sugar 🍭',
+            'Beautiful 🌹', 'Gorgeous 💐', 'Amazing 🌟', 'Perfect ✨',
+            'Sunshine ☀️', 'Moonlight 🌙', 'Starlight ⭐', 'Dream 💭',
+            'Magic 🪄', 'Wonder 🎆', 'Miracle ✨', 'Bliss 😇',
+            'Treasure 💎', 'Jewel 💍', 'Precious 🏆', 'Divine 🌈',
+            'Eternal 🔮', 'Infinite ♾️', 'Destiny 🎯', 'Soulmate 👫',
+            'Paradise 🏝️', 'Heaven 🌤️', 'Euphoria 🎊', 'Ecstasy 🎭'
+        ];
+
+        // 15 màu siêu đỉnh
+        const colors = [
+            'pink', 'blue', 'green', 'purple', 'red', 'orange', 'yellow', 'cyan', 
+            'magenta', 'lime', 'gold', 'silver', 'coral', 'violet', 'turquoise'
+        ];
+        
+        // TẤT CẢ 50 MEGA ANIMATIONS!
+        const allAnimations = [
+            // Group 1: Basic 8 directions
+            'fallFromTop', 'fallFromBottom', 'fallFromLeft', 'fallFromRight',
+            'fallDiagonalTL', 'fallDiagonalTR', 'fallDiagonalBL', 'fallDiagonalBR',
+            
+            // Group 2: 3D Depth Effects (10)
+            'fall3DForward', 'fall3DBackward', 'fall3DLeft', 'fall3DRight',
+            'fall3DTopDeep', 'fall3DBottomDeep', 'fall3DCenterZoom', 'fall3DSpiral',
+            'fall3DOrbit', 'fall3DTornado',
+            
+            // Group 3: Wave & Flow Effects (10)
+            'waveHorizontal', 'waveVertical', 'waveSine', 'waveCosine',
+            'waveSpiral3D', 'waveCircular', 'waveInfinity', 'wavePendulum',
+            'waveDouble', 'waveTriple',
+            
+            // Group 4: Complex Pattern Effects (10)
+            'patternZigzag', 'patternStar', 'patternHeart', 'patternFigure8',
+            'patternSpirograph', 'patternFlower', 'patternDNA', 'patternGalaxy',
+            'patternMandala', 'patternChaos',
+            
+            // Group 5: Bounce & Physics Effects (12)
+            'bounceCenter', 'bounceLeft', 'bounceRight', 'bounceMultiple',
+            'bounceDiagonal', 'bounceRandom', 'bounceElastic', 'bounceGravity',
+            'bounceSpring', 'bouncePinball', 'bounceRubber'
+        ];
+
+        // MEGA Variables
+        let textCount = 0;
+        let heartCount = 0;
+        let particleCount = 0;
+        let maxTexts = 100;
+        let maxHearts = 30;
+        let maxParticles = 50;
+        let chaosMode = false;
+        let megaMode = false;
+        let particlesEnabled = true;
+        let currentSpeed = 60; // ms
+        let fps = 60;
+        let systemLoad = 0;
+
+        // Rotation & Zoom
+        let container = document.getElementById('container');
+        let rotationY = 0;
+        let zoomLevel = 1;
+        let isRotating = false;
+        let isZooming = false;
+        let isAutoRotating = false;
+        let autoRotateInterval;
+        
+        // Touch variables
+        let startX = 0;
+        let lastX = 0;
+        let initialPinchDistance = 0;
+        let initialZoom = 1;
+
+        // Ẩn mega display sau 15s
+        setTimeout(() => {
+            document.getElementById('megaDisplay').style.opacity = '0';
+            setTimeout(() => document.getElementById('megaDisplay').style.display = 'none', 500);
+        }, 15000);
+
+        // Hàm xác định hướng tối ưu cho 50 animations
+        function getOptimalDirectionsForAngle() {
+            let normalizedY = ((rotationY % 360) + 360) % 360;
+            let primaryDirections = [];
+            let secondaryDirections = [];
+            let effectDirections = [];
+            let description = '';
+            
+            // Chia thành 10 khu vực, mỗi khu 36°
+            const sector = Math.floor(normalizedY / 36);
+            
+            switch(sector) {
+                case 0: // 0-36°
+                    primaryDirections = ['fallFromTop', 'fallDiagonalTL', 'fallDiagonalTR', 'fall3DForward', 'bounceCenter'];
+                    secondaryDirections = ['waveVertical', 'patternHeart', 'fall3DTopDeep'];
+                    effectDirections = ['patternStar', 'bounceElastic', 'waveSpiral3D'];
+                    description = 'Sector 1: Top Focus + 3D Forward';
+                    break;
+                case 1: // 36-72°
+                    primaryDirections = ['fallDiagonalTL', 'fallFromLeft', 'fall3DLeft', 'waveHorizontal', 'bounceLeft'];
+                    secondaryDirections = ['patternZigzag', 'fall3DSpiral', 'waveSine'];
+                    effectDirections = ['patternFlower', 'bounceRandom', 'waveDouble'];
+                    description = 'Sector 2: Left Diagonal + Waves';
+                    break;
+                case 2: // 72-108°
+                    primaryDirections = ['fallFromLeft', 'fallDiagonalBL', 'fall3DLeft', 'waveHorizontal', 'bounceLeft'];
+                    secondaryDirections = ['patternDNA', 'fall3DOrbit', 'waveCosine'];
+                    effectDirections = ['patternGalaxy', 'bouncePinball', 'waveTriple'];
+                    description = 'Sector 3: Left Side + Complex Patterns';
+                    break;
+                case 3: // 108-144°
+                    primaryDirections = ['fallDiagonalBL', 'fallFromBottom', 'fall3DBackward', 'bounceGravity'];
+                    secondaryDirections = ['patternFigure8', 'fall3DBottomDeep', 'waveInfinity'];
+                    effectDirections = ['patternMandala', 'bounceSpring', 'wavePendulum'];
+                    description = 'Sector 4: Bottom Left + Physics';
+                    break;
+                case 4: // 144-180°
+                    primaryDirections = ['fallFromBottom', 'fallDiagonalBR', 'fall3DBackward', 'bounceCenter'];
+                    secondaryDirections = ['waveVertical', 'patternChaos', 'fall3DBottomDeep'];
+                    effectDirections = ['patternSpirograph', 'bounceMultiple', 'waveCircular'];
+                    description = 'Sector 5: Bottom Focus + Chaos';
+                    break;
+                case 5: // 180-216°
+                    primaryDirections = ['fallDiagonalBR', 'fallFromRight', 'fall3DRight', 'bounceRight'];
+                    secondaryDirections = ['patternZigzag', 'fall3DTornado', 'waveHorizontal'];
+                    effectDirections = ['patternFlower', 'bounceRubber', 'waveDouble'];
+                    description = 'Sector 6: Right Diagonal + Tornado';
+                    break;
+                case 6: // 216-252°
+                    primaryDirections = ['fallFromRight', 'fallDiagonalTR', 'fall3DRight', 'bounceRight'];
+                    secondaryDirections = ['patternDNA', 'fall3DOrbit', 'waveSine'];
+                    effectDirections = ['patternGalaxy', 'bounceDiagonal', 'waveTriple'];
+                    description = 'Sector 7: Right Side + Orbital';
+                    break;
+                case 7: // 252-288°
+                    primaryDirections = ['fallDiagonalTR', 'fallFromTop', 'fall3DForward', 'bounceElastic'];
+                    secondaryDirections = ['patternHeart', 'fall3DTopDeep', 'waveInfinity'];
+                    effectDirections = ['patternStar', 'bounceGravity', 'wavePendulum'];
+                    description = 'Sector 8: Top Right + Elastic';
+                    break;
+                case 8: // 288-324°
+                    primaryDirections = ['fallFromTop', 'fallDiagonalTL', 'fall3DCenterZoom', 'bounceCenter'];
+                    secondaryDirections = ['waveSpiral3D', 'patternMandala', 'fall3DSpiral'];
+                    effectDirections = ['patternChaos', 'bounceMultiple', 'waveCircular'];
+                    description = 'Sector 9: Top Center + Zoom';
+                    break;
+                case 9: // 324-360°
+                    primaryDirections = ['fallFromTop', 'fallDiagonalTR', 'fall3DForward', 'bounceCenter'];
+                    secondaryDirections = ['waveVertical', 'patternSpirograph', 'fall3DTopDeep'];
+                    effectDirections = ['patternHeart', 'bounceElastic', 'waveSpiral3D'];
+                    description = 'Sector 10: Return to Front';
+                    break;
+            }
+            
+            return {
+                primary: primaryDirections,
+                secondary: secondaryDirections,
+                effects: effectDirections,
+                all: [...primaryDirections, ...secondaryDirections, ...effectDirections],
+                description: description,
+                angle: Math.round(normalizedY),
+                sector: sector + 1
+            };
+        }
+
+        // Hàm cập nhật transform
+        function updateTransform() {
+            const scale = zoomLevel;
+            container.style.transform = `rotateY(${rotationY}deg) scale(${scale})`;
+            
+            // Update UI
+            document.getElementById('rotY').textContent = Math.round(rotationY) + '°';
+            document.getElementById('zoomLevel').textContent = Math.round(zoomLevel * 100) + '%';
+            
+            // Update direction info
+            const info = getOptimalDirectionsForAngle();
+            document.getElementById('currentDirections').textContent = info.description;
+            document.getElementById('activeAnimations').textContent = `Sector ${info.sector}: ${info.all.length} active`;
+            
+            // Update mode
+            let mode = 'MEGA';
+            if (megaMode) mode = 'ULTRA MEGA 🚀';
+            if (chaosMode) mode += ' + CHAOS 🔥';
+            if (zoomLevel > 1.5) mode += ' + ZOOM';
+            if (isAutoRotating) mode += ' + AUTO';
+            document.getElementById('currentMode').textContent = mode;
+            
+            // Update speed display
+            let speedText = 'MEGA';
+            if (megaMode) speedText = 'ULTRA';
+            if (chaosMode) speedText = 'CHAOS';
+            document.getElementById('currentSpeed').textContent = speedText;
+        }
+
+        // Update counters
+        function updateCounters() {
+            document.getElementById('textCount').textContent = textCount;
+            
+            // Calculate system load
+            const totalElements = textCount + heartCount + particleCount;
+            systemLoad = Math.round((totalElements / (maxTexts + maxHearts + maxParticles)) * 100);
+            document.getElementById('systemLoad').textContent = systemLoad + '%';
+        }
+
+        // Toggle MEGA mode
+        function toggleMegaMode() {
+            megaMode = !megaMode;
+            const megaBtn = document.querySelectorAll('.control-btn')[3];
+            
+            if (megaMode) {
+                currentSpeed = 30; // Siêu nhanh
+                maxTexts = 150;
+                maxHearts = 50;
+                megaBtn.style.background = 'rgba(255, 215, 0, 0.7)';
+                megaBtn.textContent = '🌟 ULTRA';
+                
+                // MEGA burst - tạo 50 chữ với 50 animations khác nhau
+                allAnimations.forEach((animation, index) => {
+                    setTimeout(() => createMegaText(animation), index * 20);
+                });
+            } else {
+                currentSpeed = 60;
+                maxTexts = 100;
+                maxHearts = 30;
+                megaBtn.style.background = 'rgba(255, 105, 180, 0.5)';
+                megaBtn.textContent = '💥 MEGA';
+            }
+            updateTransform();
+            updateIntervals();
+        }
+
+        // Toggle Chaos mode
+                function toggleChaosMode() {
+            chaosMode = !chaosMode;
+            const chaosBtn = document.querySelectorAll('.control-btn')[2];
+            
+            if (chaosMode) {
+                currentSpeed = 20; // Siêu siêu nhanh
+                maxTexts = 200;
+                maxHearts = 60;
+                chaosBtn.style.background = 'rgba(255, 0, 0, 0.8)';
+                chaosBtn.textContent = '🌪️ CHAOS';
+                
+                // Chaos burst - random tất cả 50 hướng
+                for (let i = 0; i < 25; i++) {
+                    setTimeout(() => {
+                        const randomAnimation = allAnimations[Math.floor(Math.random() * allAnimations.length)];
+                        createChaosText(randomAnimation);
+                    }, i * 15);
+                }
+            } else {
+                currentSpeed = megaMode ? 30 : 60;
+                maxTexts = megaMode ? 150 : 100;
+                maxHearts = megaMode ? 50 : 30;
+                chaosBtn.style.background = 'rgba(255, 105, 180, 0.5)';
+                chaosBtn.textContent = '🔥 Chaos';
+            }
+            updateTransform();
+            updateIntervals();
+        }
+
+        // Toggle particles
+        function toggleParticles() {
+            particlesEnabled = !particlesEnabled;
+            const particleBtn = document.querySelectorAll('.control-btn')[4];
+            
+            if (particlesEnabled) {
+                particleBtn.style.background = 'rgba(255, 255, 255, 0.7)';
+                particleBtn.textContent = '✨ ON';
+                createParticleSystem();
+            } else {
+                particleBtn.style.background = 'rgba(100, 100, 100, 0.5)';
+                particleBtn.textContent = '✨ OFF';
+                document.querySelector('.particle-system').innerHTML = '';
+                particleCount = 0;
+            }
+            updateCounters();
+        }
+
+        // Reset rotation
+        function resetRotation() {
+            rotationY = 0;
+            zoomLevel = 1;
+            container.classList.add('smooth');
+            updateTransform();
+            setTimeout(() => container.classList.remove('smooth'), 400);
+        }
+
+        // Auto rotate
+        function autoRotate() {
+            if (isAutoRotating) {
+                clearInterval(autoRotateInterval);
+                isAutoRotating = false;
+                document.querySelectorAll('.control-btn')[1].textContent = '🌀 Auto';
+            } else {
+                startAutoRotate();
+            }
+        }
+
+        function startAutoRotate() {
+            isAutoRotating = true;
+            document.querySelectorAll('.control-btn')[1].textContent = '⏸️ Stop';
+            autoRotateInterval = setInterval(() => {
+                rotationY += 7.2; // 50 positions = 360/50 = 7.2°
+                rotationY = rotationY % 360;
+                updateTransform();
+            }, 200);
+        }
+
+        // Touch controls MEGA
+        let touchStartTime = 0;
+        let touchCount = 0;
+
+        container.addEventListener('touchstart', function(e) {
+            e.preventDefault();
+            touchStartTime = Date.now();
+            
+            if (e.touches.length === 1) {
+                startX = e.touches[0].clientX;
+                lastX = startX;
+                isRotating = true;
+            } else if (e.touches.length === 2) {
+                const touch1 = e.touches[0];
+                const touch2 = e.touches[1];
+                initialPinchDistance = Math.sqrt(
+                    Math.pow(touch2.clientX - touch1.clientX, 2) +
+                    Math.pow(touch2.clientY - touch1.clientY, 2)
+                );
+                initialZoom = zoomLevel;
+                isZooming = true;
+                isRotating = false;
+            }
+        });
+
+        container.addEventListener('touchmove', function(e) {
+            e.preventDefault();
+            
+            if (e.touches.length === 1 && isRotating && !isZooming) {
+                const currentX = e.touches[0].clientX;
+                const deltaX = currentX - lastX;
+                rotationY += deltaX * 0.5;
+                rotationY = rotationY % 360;
+                lastX = currentX;
+                updateTransform();
+            } else if (e.touches.length === 2 && isZooming) {
+                const touch1 = e.touches[0];
+                const touch2 = e.touches[1];
+                const currentDistance = Math.sqrt(
+                    Math.pow(touch2.clientX - touch1.clientX, 2) +
+                    Math.pow(touch2.clientY - touch1.clientY, 2)
+                );
+                const scale = currentDistance / initialPinchDistance;
+                zoomLevel = Math.max(0.2, Math.min(4, initialZoom * scale));
+                updateTransform();
+            }
+        });
+
+        container.addEventListener('touchend', function(e) {
+            e.preventDefault();
+            const touchDuration = Date.now() - touchStartTime;
+            
+            // Multi-tap detection
+            if (touchDuration < 300) {
+                touchCount++;
+                setTimeout(() => {
+                    if (touchCount === 2) {
+                        // Double tap = toggle auto rotate
+                        autoRotate();
+                    } else if (touchCount === 3) {
+                        // Triple tap = MEGA explosion
+                        createMegaExplosion();
+                    } else if (touchCount >= 4) {
+                        // Quad+ tap = ULTIMATE CHAOS
+                        createUltimateExplosion();
+                    }
+                    touchCount = 0;
+                }, 300);
+            }
+            
+            isRotating = false;
+            isZooming = false;
+        });
+
+        // Mouse controls
+        container.addEventListener('wheel', function(e) {
+            e.preventDefault();
+            const delta = e.deltaY > 0 ? -0.1 : 0.1;
+            zoomLevel = Math.max(0.2, Math.min(4, zoomLevel + delta));
+            updateTransform();
+        });
+
+        // Tạo chữ rơi MEGA với 50 hướng
+        function createFlyingText() {
+            if (textCount >= maxTexts) return;
+            
+            const text = document.createElement('div');
+            const randomWord = loveWords[Math.floor(Math.random() * loveWords.length)];
+            const randomColor = colors[Math.floor(Math.random() * colors.length)];
+            
+            // Lấy hướng tối ưu cho góc hiện tại
+            const info = getOptimalDirectionsForAngle();
+            
+            let selectedAnimation;
+            if (chaosMode) {
+                // Chaos mode: random tất cả 50 hướng
+                selectedAnimation = allAnimations[Math.floor(Math.random() * allAnimations.length)];
+            } else if (megaMode) {
+                // MEGA mode: ưu tiên effects + secondary
+                const rand = Math.random();
+                if (rand < 0.4) {
+                    selectedAnimation = info.effects[Math.floor(Math.random() * info.effects.length)];
+                } else if (rand < 0.7) {
+                    selectedAnimation = info.secondary[Math.floor(Math.random() * info.secondary.length)];
+                } else {
+                    selectedAnimation = info.primary[Math.floor(Math.random() * info.primary.length)];
+                }
+            } else {
+                // Normal mode: thông minh theo góc
+                const rand = Math.random();
+                if (rand < 0.5) {
+                    selectedAnimation = info.primary[Math.floor(Math.random() * info.primary.length)];
+                } else if (rand < 0.8) {
+                    selectedAnimation = info.secondary[Math.floor(Math.random() * info.secondary.length)];
+                } else {
+                    selectedAnimation = info.effects[Math.floor(Math.random() * info.effects.length)];
+                }
+            }
+            
+            text.textContent = randomWord;
+            text.className = `flying-text ${randomColor}`;
+            
+            // Vị trí xuất phát thông minh cho 50 animations
+            const positions = getStartPosition(selectedAnimation);
+            text.style.left = positions.left;
+            text.style.top = positions.top;
+            
+            text.style.animationName = selectedAnimation;
+            
+            // Duration dựa trên mode
+            let baseDuration;
+            if (chaosMode) {
+                baseDuration = Math.random() * 1 + 1.5; // 1.5-2.5s
+            } else if (megaMode) {
+                baseDuration = Math.random() * 1.5 + 2; // 2-3.5s
+            } else {
+                baseDuration = Math.random() * 2 + 3; // 3-5s
+            }
+            text.style.animationDuration = baseDuration + 's';
+            
+            // Special effects
+            if (chaosMode) {
+                text.style.fontSize = '1.1rem';
+                text.style.textShadow = '0 0 25px currentColor, 0 0 50px currentColor';
+                text.style.filter = 'brightness(1.8) saturate(2) hue-rotate(' + (Math.random() * 360) + 'deg)';
+            } else if (megaMode) {
+                text.style.fontSize = '1.05rem';
+                text.style.textShadow = '0 0 20px currentColor, 0 0 40px currentColor';
+                text.style.filter = 'brightness(1.4) saturate(1.5)';
+            }
+            
+            document.querySelector('.floating-text').appendChild(text);
+            textCount++;
+            updateCounters();
+            
+            const duration = parseFloat(text.style.animationDuration) * 1000;
+            setTimeout(() => {
+                if (text.parentNode) {
+                    text.remove();
+                    textCount--;
+                    updateCounters();
+                }
+            }, duration);
+        }
+
+        // Tạo MEGA text với animation cụ thể
+        function createMegaText(animationType) {
+            const text = document.createElement('div');
+            const randomWord = loveWords[Math.floor(Math.random() * loveWords.length)];
+            const randomColor = colors[Math.floor(Math.random() * colors.length)];
+            
+            text.textContent = `🚀 ${randomWord} 🚀`;
+            text.className = `flying-text ${randomColor}`;
+            
+            const positions = getStartPosition(animationType);
+            text.style.left = positions.left;
+            text.style.top = positions.top;
+            text.style.fontSize = '1.2rem';
+            text.style.animationName = animationType;
+            text.style.animationDuration = '3s';
+            text.style.textShadow = '0 0 30px currentColor, 0 0 60px currentColor';
+            text.style.filter = 'brightness(2) saturate(2)';
+            text.style.zIndex = '10';
+            
+            document.querySelector('.floating-text').appendChild(text);
+            
+            setTimeout(() => {
+                if (text.parentNode) text.remove();
+            }, 3000);
+        }
+
+        // Tạo Chaos text
+        function createChaosText(animationType) {
+            const text = document.createElement('div');
+            const randomWord = loveWords[Math.floor(Math.random() * loveWords.length)];
+            const randomColor = colors[Math.floor(Math.random() * colors.length)];
+            
+            text.textContent = `🌪️ ${randomWord} 🌪️`;
+            text.className = `flying-text ${randomColor}`;
+            
+            const positions = getStartPosition(animationType);
+            text.style.left = positions.left;
+            text.style.top = positions.top;
+            text.style.fontSize = '1.1rem';
+            text.style.animationName = animationType;
+            text.style.animationDuration = '2s';
+            text.style.textShadow = '0 0 35px currentColor, 0 0 70px currentColor';
+            text.style.filter = `brightness(2.5) saturate(3) hue-rotate(${Math.random() * 360}deg)`;
+            text.style.zIndex = '15';
+            
+            document.querySelector('.floating-text').appendChild(text);
+            
+            setTimeout(() => {
+                if (text.parentNode) text.remove();
+            }, 2000);
+        }
+
+        // Hàm xác định vị trí xuất phát cho 50 animations
+        function getStartPosition(animationType) {
+            const positions = {
+                left: '50%',
+                top: '50%'
+            };
+            
+            // Group 1: Basic 8 directions
+            if (animationType.includes('fallFromTop')) {
+                positions.left = Math.random() * 80 + 10 + '%';
+                positions.top = '-80px';
+            } else if (animationType.includes('fallFromBottom')) {
+                positions.left = Math.random() * 80 + 10 + '%';
+                positions.top = 'calc(100% + 50px)';
+            } else if (animationType.includes('fallFromLeft')) {
+                positions.left = '-80px';
+                positions.top = Math.random() * 80 + 10 + '%';
+            } else if (animationType.includes('fallFromRight')) {
+                positions.left = 'calc(100% + 50px)';
+                positions.top = Math.random() * 80 + 10 + '%';
+            } else if (animationType.includes('fallDiagonalTL')) {
+                positions.left = '-60px';
+                positions.top = '-60px';
+            } else if (animationType.includes('fallDiagonalTR')) {
+                positions.left = 'calc(100% + 40px)';
+                positions.top = '-60px';
+            } else if (animationType.includes('fallDiagonalBL')) {
+                positions.left = '-60px';
+                positions.top = 'calc(100% + 40px)';
+            } else if (animationType.includes('fallDiagonalBR')) {
+                positions.left = 'calc(100% + 40px)';
+                positions.top = 'calc(100% + 40px)';
+            }
+            
+            // Group 2: 3D Effects - center hoặc edges
+            else if (animationType.includes('fall3D') || animationType.includes('3D')) {
+                if (animationType.includes('Forward') || animationType.includes('Backward')) {
+                    positions.left = Math.random() * 60 + 20 + '%';
+                    positions.top = Math.random() * 60 + 20 + '%';
+                } else if (animationType.includes('Left')) {
+                    positions.left = Math.random() < 0.5 ? '-100px' : 'calc(100% + 80px)';
+                    positions.top = Math.random() * 70 + 15 + '%';
+                } else if (animationType.includes('Right')) {
+                    positions.left = Math.random() < 0.5 ? 'calc(100% + 80px)' : '-100px';
+                    positions.top = Math.random() * 70 + 15 + '%';
+                } else if (animationType.includes('TopDeep')) {
+                    positions.left = Math.random() * 80 + 10 + '%';
+                    positions.top = '-120px';
+                } else if (animationType.includes('BottomDeep')) {
+                    positions.left = Math.random() * 80 + 10 + '%';
+                    positions.top = 'calc(100% + 100px)';
+                } else {
+                    // Center, Spiral, Orbit, Tornado
+                    positions.left = Math.random() * 40 + 30 + '%';
+                    positions.top = Math.random() * 40 + 30 + '%';
+                }
+            }
+            
+            // Group 3: Wave effects
+            else if (animationType.includes('wave')) {
+                if (animationType.includes('Horizontal')) {
+                    positions.left = Math.random() < 0.5 ? '-80px' : 'calc(100% + 60px)';
+                    positions.top = Math.random() * 80 + 10 + '%';
+                } else if (animationType.includes('Vertical')) {
+                    positions.left = Math.random() * 80 + 10 + '%';
+                    positions.top = Math.random() < 0.5 ? '-80px' : 'calc(100% + 60px)';
+                } else {
+                    // Sine, Cosine, Spiral, Circular, Infinity, Pendulum, Double, Triple
+                    positions.left = Math.random() * 30 + '%';
+                    positions.top = Math.random() * 30 + '%';
+                }
+            }
+            
+            // Group 4: Pattern effects
+            else if (animationType.includes('pattern')) {
+                positions.left = Math.random() * 60 + 20 + '%';
+                positions.top = Math.random() * 60 + 20 + '%';
+                
+                if (animationType.includes('Zigzag')) {
+                    positions.left = '-80px';
+                    positions.top = '-80px';
+                } else if (animationType.includes('Heart')) {
+                    positions.left = '50%';
+                    positions.top = 'calc(100% + 80px)';
+                } else if (animationType.includes('Chaos')) {
+                    positions.left = Math.random() * 100 + '%';
+                    positions.top = Math.random() * 100 + '%';
+                }
+            }
+            
+            // Group 5: Bounce effects
+            else if (animationType.includes('bounce')) {
+                if (animationType.includes('Center')) {
+                    positions.left = '50%';
+                    positions.top = '-120px';
+                } else if (animationType.includes('Left')) {
+                    positions.left = '-150px';
+                    positions.top = Math.random() * 60 + 20 + '%';
+                } else if (animationType.includes('Right')) {
+                    positions.left = 'calc(100% + 130px)';
+                    positions.top = Math.random() * 60 + 20 + '%';
+                } else if (animationType.includes('Diagonal')) {
+                    positions.left = '-80px';
+                    positions.top = '-80px';
+                } else if (animationType.includes('Spring')) {
+                    positions.left = '50%';
+                    positions.top = 'calc(100% + 120px)';
+                } else {
+                    // Multiple, Random, Elastic, Gravity, Pinball, Rubber
+                    positions.left = Math.random() * 80 + 10 + '%';
+                    positions.top = Math.random() < 0.5 ? '-100px' : 'calc(100% + 80px)';
+                }
+            }
+            
+            return positions;
+        }
+
+        // Tạo tim bay
+        function createHeart() {
+            if (heartCount >= maxHearts) return;
+            
+            const heart = document.createElement('div');
+            const heartTypes = ['❤️', '💕', '💖', '💗', '💝', '💘', '💞', '💓', '🧡', '💚', '💙', '💜', '🤍', '🖤', '💛'];
+            heart.textContent = heartTypes[Math.floor(Math.random() * heartTypes.length)];
+            heart.className = 'heart';
+            heart.style.left = Math.random() * 90 + 5 + '%';
+            
+            let heartDuration;
+            if (chaosMode) {
+                heartDuration = Math.random() * 1.5 + 2;
+            } else if (megaMode) {
+                heartDuration = Math.random() * 2 + 3;
+            } else {
+                heartDuration = Math.random() * 2 + 5;
+            }
+            heart.style.animationDuration = heartDuration + 's';
+            
+            if (chaosMode) {
+                heart.style.fontSize = '24px';
+                heart.style.filter = 'drop-shadow(0 0 15px #ff6b6b) hue-rotate(' + (Math.random() * 360) + 'deg)';
+            } else if (megaMode) {
+                heart.style.fontSize = '22px';
+                heart.style.filter = 'drop-shadow(0 0 12px #ff6b6b) brightness(1.5)';
+            }
+            
+            document.querySelector('.floating-hearts').appendChild(heart);
+            heartCount++;
+            
+            setTimeout(() => {
+                if (heart.parentNode) {
+                    heart.remove();
+                    heartCount--;
+                }
+            }, heartDuration * 1000);
+        }
+
+        // Tạo particle system
+        function createParticleSystem() {
+            if (!particlesEnabled) return;
+            
+            const particleSystem = document.querySelector('.particle-system');
+            
+            // Tạo particles liên tục
+            const createParticle = () => {
+                if (particleCount >= maxParticles || !particlesEnabled) return;
+                
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDuration = (Math.random() * 4 + 4) + 's';
+                particle.style.animationDelay = Math.random() * 2 + 's';
+                
+                // Random colors
+                const particleColors = ['#fff', '#ff6b6b', '#4ecdc4', '#45b7d1', '#96ceb4', '#feca57'];
+                particle.style.background = particleColors[Math.floor(Math.random() * particleColors.length)];
+                
+                if (chaosMode) {
+                    particle.style.width = particle.style.height = (Math.random() * 3 + 2) + 'px';
+                    particle.style.filter = 'brightness(2) saturate(2)';
+                }
+                
+                particleSystem.appendChild(particle);
+                particleCount++;
+                
+                setTimeout(() => {
+                    if (particle.parentNode) {
+                        particle.remove();
+                        particleCount--;
+                    }
+                }, 8000);
+            };
+            
+            // Tạo particles theo interval
+            setInterval(createParticle, chaosMode ? 100 : (megaMode ? 150 : 200));
+        }
+
+        // MEGA Explosion - showcase tất cả 50 hướng
+        function createMegaExplosion() {
+            // Tạo text cho mỗi animation trong 50 animations
+            allAnimations.forEach((animation, index) => {
+                setTimeout(() => {
+                    const text = document.createElement('div');
+                    text.textContent = `💥 ${animation.replace(/([A-Z])/g, ' $1').replace(/3D/g, '3D').trim()} 💥`;
+                    text.className = 'flying-text gold';
+                    
+                    const positions = getStartPosition(animation);
+                    text.style.left = positions.left;
+                    text.style.top = positions.top;
+                    text.style.fontSize = '0.9rem';
+                    text.style.animationName = animation;
+                    text.style.animationDuration = '4s';
+                    text.style.textShadow = '0 0 20px currentColor, 0 0 40px currentColor';
+                    text.style.filter = 'brightness(2) saturate(2)';
+                    text.style.zIndex = '20';
+                    
+                    document.querySelector('.floating-text').appendChild(text);
+                    
+                    setTimeout(() => {
+                        if (text.parentNode) text.remove();
+                    }, 4000);
+                }, index * 80); // Stagger cho 50 animations
+            });
+        }
+
+        // ULTIMATE Explosion - chaos tuyệt đối
+        function createUltimateExplosion() {
+            // Tạo 100 text với random animations
+            for (let i = 0; i < 100; i++) {
+                setTimeout(() => {
+                    const text = document.createElement('div');
+                    text.textContent = '🌟 ULTIMATE LOVE STORM 🌟';
+                    text.className = 'flying-text magenta';
+                    
+                    const animation = allAnimations[Math.floor(Math.random() * allAnimations.length)];
+                    const positions = getStartPosition(animation);
+                    text.style.left = positions.left;
+                    text.style.top = positions.top;
+                    text.style.fontSize = '1.3rem';
+                    text.style.animationName = animation;
+                    text.style.animationDuration = '3s';
+                    text.style.textShadow = '0 0 30px currentColor, 0 0 60px currentColor';
+                    text.style.filter = `brightness(3) saturate(3) hue-rotate(${Math.random() * 360}deg)`;
+                    text.style.zIndex = '25';
+                    
+                    document.querySelector('.floating-text').appendChild(text);
+                    
+                    setTimeout(() => {
+                        if (text.parentNode) text.remove();
+                    }, 3000);
+                }, i * 20);
+            }
+        }
+
+        // Dynamic intervals
+        let textIntervalId = setInterval(createFlyingText, currentSpeed);
+        let heartIntervalId = setInterval(createHeart, 600);
+
+        function updateIntervals() {
+            clearInterval(textIntervalId);
+            clearInterval(heartIntervalId);
+            
+            textIntervalId = setInterval(createFlyingText, currentSpeed);
+            
+            let heartSpeed = 600;
+            if (chaosMode) heartSpeed = 300;
+            else if (megaMode) heartSpeed = 400;
+            
+            heartIntervalId = setInterval(createHeart, heartSpeed);
+        }
+
+        // Performance monitoring MEGA
+        let frameCount = 0;
+        let lastTime = performance.now();
+        
+        function monitorPerformance() {
+            frameCount++;
+            const currentTime = performance.now();
+            
+            if (currentTime - lastTime >= 1000) {
+                fps = Math.round((frameCount * 1000) / (currentTime - lastTime));
+                
+                // Update UI
+                document.getElementById('fps').textContent = fps;
+                
+                // Auto quality adjustment cho 50 directions
+                let quality = 'ULTRA';
+                if (fps < 25) {
+                    quality = 'LOW';
+                    maxTexts = 50;
+                    maxHearts = 15;
+                } else if (fps < 35) {
+                    quality = 'MEDIUM';
+                    maxTexts = 80;
+                    maxHearts = 20;
+                } else if (fps < 45) {
+                    quality = 'HIGH';
+                    maxTexts = 120;
+                    maxHearts = 25;
+                } else {
+                    quality = 'ULTRA';
+                    if (megaMode) {
+                        maxTexts = 150;
+                        maxHearts = 50;
+                    } else if (chaosMode) {
+                        maxTexts = 200;
+                        maxHearts = 60;
+                    } else {
+                        maxTexts = 100;
+                        maxHearts = 30;
+                    }
+                }
+                
+                document.getElementById('quality').textContent = quality;
+                
+                frameCount = 0;
+                lastTime = currentTime;
+            }
+            
+            requestAnimationFrame(monitorPerformance);
+        }
+
+        // Dọn dẹp DOM thông minh cho 50 directions
+        setInterval(() => {
+            const allTexts = document.querySelectorAll('.flying-text');
+            const allHearts = document.querySelectorAll('.heart');
+            const allParticles = document.querySelectorAll('.particle');
+            
+            // Aggressive cleanup
+            const textLimit = maxTexts + (chaosMode ? 50 : (megaMode ? 30 : 20));
+            const heartLimit = maxHearts + (chaosMode ? 20 : (megaMode ? 15 : 10));
+            const particleLimit = maxParticles + 20;
+            
+            if (allTexts.length > textLimit) {
+                const removeCount = chaosMode ? 15 : (megaMode ? 10 : 8);
+                for (let i = 0; i < removeCount && i < allTexts.length; i++) {
+                    if (allTexts[i] && allTexts[i].parentNode) {
+                        allTexts[i].remove();
+                        textCount--;
+                    }
+                }
+                updateCounters();
+            }
+            
+            if (allHearts.length > heartLimit) {
+                const removeCount = chaosMode ? 8 : (megaMode ? 6 : 4);
+                for (let i = 0; i < removeCount && i < allHearts.length; i++) {
+                    if (allHearts[i] && allHearts[i].parentNode) {
+                        allHearts[i].remove();
+                        heartCount--;
+                    }
+                }
+            }
+            
+            if (allParticles.length > particleLimit) {
+                const removeCount = 10;
+                for (let i = 0; i < removeCount && i < allParticles.length; i++) {
+                    if (allParticles[i] && allParticles[i].parentNode) {
+                        allParticles[i].remove();
+                        particleCount--;
+                    }
+                }
+                updateCounters();
+            }
+        }, chaosMode ? 1000 : (megaMode ? 1500 : 2000));
+
+        // Khởi tạo MEGA
+        updateTransform();
+        updateCounters();
+        monitorPerformance();
+        if (particlesEnabled) createParticleSystem();
+
+        // Demo showcase 50 directions khi load
+        window.addEventListener('load', function() {
+            setTimeout(() => {
+                // Showcase từng group
+                const groups = [
+                    { name: 'Basic 8', animations: allAnimations.slice(0, 8), delay: 0 },
+                    { name: '3D Effects', animations: allAnimations.slice(8, 18), delay: 2000 },
+                    { name: 'Wave Flow', animations: allAnimations.slice(18, 28), delay: 4000 },
+                    { name: 'Patterns', animations: allAnimations.slice(28, 38), delay: 6000 },
+                    { name: 'Physics', animations: allAnimations.slice(38, 50), delay: 8000 }
+                ];
+                
+                groups.forEach(group => {
+                    setTimeout(() => {
+                        // Hiển thị tên group
+                        const groupText = document.createElement('div');
+                        groupText.textContent = `🚀 ${group.name.toUpperCase()} GROUP 🚀`;
+                        groupText.className = 'flying-text cyan';
+                        groupText.style.left = '50%';
+                        groupText.style.top = '10vh';
+                        groupText.style.fontSize = '1.5rem';
+                        groupText.style.animationName = 'fall3DCenterZoom';
+                        groupText.style.animationDuration = '3s';
+                        groupText.style.textShadow = '0 0 25px currentColor, 0 0 50px currentColor';
+                        groupText.style.zIndex = '30';
+                        
+                        document.querySelector('.floating-text').appendChild(groupText);
+                        
+                        setTimeout(() => {
+                            if (groupText.parentNode) groupText.remove();
+                        }, 3000);
+                        
+                        // Tạo demo cho từng animation trong group
+                        group.animations.forEach((animation, index) => {
+                            setTimeout(() => {
+                                const text = document.createElement('div');
+                                text.textContent = `${animation.replace(/([A-Z])/g, ' $1').replace(/3D/g, '3D').trim()} ✨`;
+                                text.className = 'flying-text gold';
+                                
+                                const positions = getStartPosition(animation);
+                                text.style.left = positions.left;
+                                text.style.top = positions.top;
+                                text.style.fontSize = '0.8rem';
+                                text.style.animationName = animation;
+                                text.style.animationDuration = '4s';
+                                text.style.textShadow = '0 0 15px currentColor, 0 0 30px currentColor';
+                                text.style.filter = 'brightness(1.5) saturate(1.5)';
+                                
+                                document.querySelector('.floating-text').appendChild(text);
+                                
+                                setTimeout(() => {
+                                    if (text.parentNode) text.remove();
+                                }, 4000);
+                            }, index * 150);
+                        });
+                    }, group.delay);
+                });
+            }, 1000);
+        });
+
+        // Keyboard shortcuts MEGA
+        document.addEventListener('keydown', function(e) {
+            switch(e.key) {
+                case 'r':
+                case 'R':
+                    resetRotation();
+                    break;
+                case 'a':
+                case 'A':
+                    autoRotate();
+                    break;
+                case 'c':
+                case 'C':
+                    toggleChaosMode();
+                    updateIntervals();
+                    break;
+                case 'm':
+                case 'M':
+                    toggleMegaMode();
+                    break;
+                case 'p':
+                case 'P':
+                    toggleParticles();
+                    break;
+                case '=':
+                case '+':
+                    zoomLevel = Math.min(4, zoomLevel + 0.2);
+                    updateTransform();
+                    break;
+                case '-':
+                case '_':
+                    zoomLevel = Math.max(0.2, zoomLevel - 0.2);
+                    updateTransform();
+                    break;
+                case 'ArrowLeft':
+                    rotationY -= 7.2; // 50 positions = 360/50 = 7.2°
+                    rotationY = rotationY % 360;
+                    updateTransform();
+                    break;
+                case 'ArrowRight':
+                    rotationY += 7.2;
+                    rotationY = rotationY % 360;
+                    updateTransform();
+                    break;
+                case 'ArrowUp':
+                    currentSpeed = Math.max(10, currentSpeed - 10);
+                    updateIntervals();
+                    break;
+                case 'ArrowDown':
+                    currentSpeed = Math.min(200, currentSpeed + 10);
+                    updateIntervals();
+                    break;
+                case ' ':
+                    e.preventDefault();
+                    autoRotate();
+                    break;
+                case 'Enter':
+                    createMegaExplosion();
+                    break;
+                case 'Escape':
+                    createUltimateExplosion();
+                    break;
+            }
+        });
+
+        // Adaptive performance cho mobile với 50 directions
+        function optimizeForDevice() {
+            const userAgent = navigator.userAgent.toLowerCase();
+            const isMobile = /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/.test(userAgent);
+            
+            if (isMobile) {
+                maxTexts = 60;
+                maxHearts = 20;
+                maxParticles = 30;
+                currentSpeed = Math.max(currentSpeed, 80);
+                
+                // Giảm effects cho mobile
+                document.querySelectorAll('.flying-text').forEach(text => {
+                    text.style.textShadow = '0 0 10px currentColor';
+                });
+            }
+            
+            // Detect high-end devices
+            const isHighEnd = navigator.hardwareConcurrency >= 8 || window.devicePixelRatio >= 2;
+            if (isHighEnd) {
+                maxTexts += 40;
+                maxHearts += 10;
+                maxParticles += 20;
+            }
+        }
+
+        // Auto-save preferences MEGA
+        const preferences = {
+            save() {
+                localStorage.setItem('megaLoveRainPrefs', JSON.stringify({
+                    chaosMode: chaosMode,
+                    megaMode: megaMode,
+                    particlesEnabled: particlesEnabled,
+                    zoomLevel: zoomLevel,
+                    currentSpeed: currentSpeed,
+                    rotationY: rotationY
+                }));
+            },
+            load() {
+                const saved = localStorage.getItem('megaLoveRainPrefs');
+                if (saved) {
+                    const prefs = JSON.parse(saved);
+                    chaosMode = prefs.chaosMode || false;
+                    megaMode = prefs.megaMode || false;
+                    particlesEnabled = prefs.particlesEnabled !== false;
+                    zoomLevel = prefs.zoomLevel || 1;
+                    currentSpeed = prefs.currentSpeed || 60;
+                    rotationY = prefs.rotationY || 0;
+                    updateTransform();
+                    updateIntervals();
+                }
+            }
+        };
+
+        preferences.load();
+                setInterval(preferences.save, 3000);
+
+        // Visibility API - pause khi tab hidden
+        document.addEventListener('visibilitychange', function() {
+            if (document.hidden) {
+                clearInterval(textIntervalId);
+                clearInterval(heartIntervalId);
+                if (isAutoRotating) clearInterval(autoRotateInterval);
+            } else {
+                updateIntervals();
+                if (isAutoRotating) startAutoRotate();
+            }
+        });
+
+        // Advanced gesture recognition
+        let gestureStartTime = 0;
+        let gesturePoints = [];
+        let lastGestureTime = 0;
+
+        function detectGesture(touches) {
+            const currentTime = Date.now();
+            
+            if (currentTime - lastGestureTime > 500) {
+                gesturePoints = [];
+            }
+            
+            gesturePoints.push({
+                x: touches[0].clientX,
+                y: touches[0].clientY,
+                time: currentTime
+            });
+            
+            lastGestureTime = currentTime;
+            
+            if (gesturePoints.length >= 3) {
+                const gesture = analyzeGesture();
+                if (gesture) {
+                    executeGesture(gesture);
+                    gesturePoints = [];
+                }
+            }
+        }
+
+        function analyzeGesture() {
+            if (gesturePoints.length < 3) return null;
+            
+            const start = gesturePoints[0];
+            const end = gesturePoints[gesturePoints.length - 1];
+            const deltaX = end.x - start.x;
+            const deltaY = end.y - start.y;
+            const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+            const duration = end.time - start.time;
+            
+            // Circle gesture
+            if (isCircularGesture()) {
+                return 'circle';
+            }
+            
+            // Swipe gestures
+            if (distance > 100 && duration < 800) {
+                const angle = Math.atan2(deltaY, deltaX) * 180 / Math.PI;
+                
+                if (angle > -45 && angle < 45) return 'swipeRight';
+                if (angle > 45 && angle < 135) return 'swipeDown';
+                if (angle > 135 || angle < -135) return 'swipeLeft';
+                if (angle > -135 && angle < -45) return 'swipeUp';
+            }
+            
+            // Zigzag gesture
+            if (isZigzagGesture()) {
+                return 'zigzag';
+            }
+            
+            return null;
+        }
+
+        function isCircularGesture() {
+            if (gesturePoints.length < 8) return false;
+            
+            let angleSum = 0;
+            for (let i = 1; i < gesturePoints.length - 1; i++) {
+                const p1 = gesturePoints[i - 1];
+                const p2 = gesturePoints[i];
+                const p3 = gesturePoints[i + 1];
+                
+                const angle1 = Math.atan2(p2.y - p1.y, p2.x - p1.x);
+                const angle2 = Math.atan2(p3.y - p2.y, p3.x - p2.x);
+                let angleDiff = angle2 - angle1;
+                
+                if (angleDiff > Math.PI) angleDiff -= 2 * Math.PI;
+                if (angleDiff < -Math.PI) angleDiff += 2 * Math.PI;
+                
+                angleSum += angleDiff;
+            }
+            
+            return Math.abs(angleSum) > Math.PI * 1.5;
+        }
+
+        function isZigzagGesture() {
+            if (gesturePoints.length < 6) return false;
+            
+            let directionChanges = 0;
+            let lastDirection = null;
+            
+            for (let i = 1; i < gesturePoints.length; i++) {
+                const deltaX = gesturePoints[i].x - gesturePoints[i - 1].x;
+                const currentDirection = deltaX > 0 ? 'right' : 'left';
+                
+                if (lastDirection && lastDirection !== currentDirection) {
+                    directionChanges++;
+                }
+                lastDirection = currentDirection;
+            }
+            
+            return directionChanges >= 3;
+        }
+
+        function executeGesture(gesture) {
+            switch (gesture) {
+                case 'circle':
+                    // Circle = MEGA explosion
+                    createMegaExplosion();
+                    break;
+                case 'swipeRight':
+                    // Swipe right = rotate right
+                    rotationY += 36;
+                    updateTransform();
+                    break;
+                case 'swipeLeft':
+                    // Swipe left = rotate left
+                    rotationY -= 36;
+                    updateTransform();
+                    break;
+                case 'swipeUp':
+                    // Swipe up = zoom in
+                    zoomLevel = Math.min(4, zoomLevel + 0.5);
+                    updateTransform();
+                    break;
+                case 'swipeDown':
+                    // Swipe down = zoom out
+                    zoomLevel = Math.max(0.2, zoomLevel - 0.5);
+                    updateTransform();
+                    break;
+                case 'zigzag':
+                    // Zigzag = ULTIMATE explosion
+                    createUltimateExplosion();
+                    break;
+            }
+        }
+
+        // Enhanced touch events with gesture recognition
+        container.addEventListener('touchmove', function(e) {
+            e.preventDefault();
+            
+            if (e.touches.length === 1) {
+                detectGesture(e.touches);
+                
+                if (isRotating && !isZooming) {
+                    const currentX = e.touches[0].clientX;
+                    const deltaX = currentX - lastX;
+                    rotationY += deltaX * 0.5;
+                    rotationY = rotationY % 360;
+                    lastX = currentX;
+                    updateTransform();
+                }
+            } else if (e.touches.length === 2 && isZooming) {
+                const touch1 = e.touches[0];
+                const touch2 = e.touches[1];
+                const currentDistance = Math.sqrt(
+                    Math.pow(touch2.clientX - touch1.clientX, 2) +
+                    Math.pow(touch2.clientY - touch1.clientY, 2)
+                );
+                const scale = currentDistance / initialPinchDistance;
+                zoomLevel = Math.max(0.2, Math.min(4, initialZoom * scale));
+                updateTransform();
+            }
+        });
+
+        // Voice commands (experimental)
+        if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+            const recognition = new SpeechRecognition();
+            
+            recognition.continuous = true;
+            recognition.interimResults = false;
+            recognition.lang = 'en-US';
+            
+            recognition.onresult = function(event) {
+                const command = event.results[event.results.length - 1][0].transcript.toLowerCase().trim();
+                
+                if (command.includes('mega') || command.includes('explosion')) {
+                    createMegaExplosion();
+                } else if (command.includes('chaos')) {
+                    toggleChaosMode();
+                } else if (command.includes('ultimate')) {
+                    createUltimateExplosion();
+                } else if (command.includes('rotate')) {
+                    autoRotate();
+                } else if (command.includes('reset')) {
+                    resetRotation();
+                } else if (command.includes('zoom in')) {
+                    zoomLevel = Math.min(4, zoomLevel + 0.5);
+                    updateTransform();
+                } else if (command.includes('zoom out')) {
+                    zoomLevel = Math.max(0.2, zoomLevel - 0.5);
+                    updateTransform();
+                }
+            };
+            
+            // Start voice recognition on double-click
+            container.addEventListener('dblclick', function() {
+                try {
+                    recognition.start();
+                    setTimeout(() => recognition.stop(), 3000);
+                } catch (e) {
+                    console.log('Voice recognition not available');
+                }
+            });
+        }
+
+        // Advanced particle effects
+        function createAdvancedParticles() {
+            if (!particlesEnabled) return;
+            
+            const particleSystem = document.querySelector('.particle-system');
+            
+            // Create different types of particles
+            const particleTypes = [
+                { type: 'star', char: '⭐', size: '8px' },
+                { type: 'heart', char: '💖', size: '12px' },
+                { type: 'sparkle', char: '✨', size: '10px' },
+                { type: 'diamond', char: '💎', size: '8px' },
+                { type: 'flower', char: '🌸', size: '10px' }
+            ];
+            
+            setInterval(() => {
+                if (particleCount >= maxParticles || !particlesEnabled) return;
+                
+                const particleType = particleTypes[Math.floor(Math.random() * particleTypes.length)];
+                const particle = document.createElement('div');
+                
+                particle.textContent = particleType.char;
+                particle.style.position = 'absolute';
+                particle.style.fontSize = particleType.size;
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = '100vh';
+                particle.style.pointerEvents = 'none';
+                particle.style.zIndex = '2';
+                
+                // Random animation from our 50 animations
+                const randomAnimation = allAnimations[Math.floor(Math.random() * allAnimations.length)];
+                particle.style.animationName = randomAnimation;
+                particle.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                particle.style.animationTimingFunction = 'ease-out';
+                
+                if (chaosMode) {
+                    particle.style.filter = `hue-rotate(${Math.random() * 360}deg) brightness(2)`;
+                }
+                
+                particleSystem.appendChild(particle);
+                particleCount++;
+                
+                setTimeout(() => {
+                    if (particle.parentNode) {
+                        particle.remove();
+                        particleCount--;
+                    }
+                }, 5000);
+            }, chaosMode ? 200 : (megaMode ? 300 : 500));
+        }
+
+        // Weather effects
+        function createWeatherEffect(type) {
+            const weatherContainer = document.createElement('div');
+            weatherContainer.style.position = 'absolute';
+            weatherContainer.style.width = '100%';
+            weatherContainer.style.height = '100%';
+            weatherContainer.style.pointerEvents = 'none';
+            weatherContainer.style.zIndex = '1';
+            
+            for (let i = 0; i < 20; i++) {
+                setTimeout(() => {
+                    const element = document.createElement('div');
+                    
+                    switch (type) {
+                        case 'snow':
+                            element.textContent = '❄️';
+                            element.style.animationName = 'fallFromTop';
+                            break;
+                        case 'rain':
+                            element.textContent = '💧';
+                            element.style.animationName = 'fallFromTop';
+                            break;
+                        case 'leaves':
+                            element.textContent = '🍃';
+                            element.style.animationName = 'waveHorizontal';
+                            break;
+                        case 'petals':
+                            element.textContent = '🌸';
+                            element.style.animationName = 'waveSine';
+                            break;
+                    }
+                    
+                    element.style.position = 'absolute';
+                    element.style.left = Math.random() * 100 + '%';
+                    element.style.top = '-50px';
+                    element.style.fontSize = '16px';
+                    element.style.animationDuration = (Math.random() * 3 + 4) + 's';
+                    element.style.opacity = '0.7';
+                    
+                    weatherContainer.appendChild(element);
+                    
+                    setTimeout(() => {
+                        if (element.parentNode) element.remove();
+                    }, 7000);
+                }, i * 200);
+            }
+            
+            container.appendChild(weatherContainer);
+            
+            setTimeout(() => {
+                if (weatherContainer.parentNode) weatherContainer.remove();
+            }, 10000);
+        }
+
+        // Seasonal effects
+        function triggerSeasonalEffect() {
+            const month = new Date().getMonth();
+            
+            if (month >= 11 || month <= 1) { // Winter
+                createWeatherEffect('snow');
+            } else if (month >= 2 && month <= 4) { // Spring
+                createWeatherEffect('petals');
+            } else if (month >= 5 && month <= 7) { // Summer
+                // Summer sparkles
+                for (let i = 0; i < 15; i++) {
+                    setTimeout(() => createMegaText('fall3DCenterZoom'), i * 100);
+                }
+            } else { // Autumn
+                createWeatherEffect('leaves');
+            }
+        }
+
+        // Time-based effects
+        function checkTimeEffects() {
+            const hour = new Date().getHours();
+            
+            if (hour >= 6 && hour < 12) {
+                // Morning - gentle effects
+                if (Math.random() < 0.1) {
+                    createWeatherEffect('petals');
+                }
+            } else if (hour >= 12 && hour < 18) {
+                // Afternoon - energetic effects
+                if (Math.random() < 0.15) {
+                    createMegaExplosion();
+                }
+            } else if (hour >= 18 && hour < 22) {
+                // Evening - romantic effects
+                if (Math.random() < 0.2) {
+                    for (let i = 0; i < 10; i++) {
+                        setTimeout(() => createMegaText('patternHeart'), i * 200);
+                    }
+                }
+            } else {
+                // Night - mystical effects
+                if (Math.random() < 0.1) {
+                    createUltimateExplosion();
+                }
+            }
+        }
+
+        // Battery optimization
+        function optimizeForBattery() {
+            if ('getBattery' in navigator) {
+                navigator.getBattery().then(function(battery) {
+                    if (battery.level < 0.2) {
+                        // Low battery - reduce effects
+                        maxTexts = Math.floor(maxTexts * 0.5);
+                        maxHearts = Math.floor(maxHearts * 0.5);
+                        maxParticles = Math.floor(maxParticles * 0.5);
+                        currentSpeed = Math.max(currentSpeed, 100);
+                        
+                        console.log('🔋 Low battery mode activated');
+                    }
+                });
+            }
+        }
+
+        // Network-aware optimizations
+        function optimizeForNetwork() {
+            if ('connection' in navigator) {
+                const connection = navigator.connection;
+                
+                if (connection.effectiveType === 'slow-2g' || connection.effectiveType === '2g') {
+                    // Slow network - minimal effects
+                    maxTexts = Math.floor(maxTexts * 0.3);
+                    particlesEnabled = false;
+                    toggleParticles();
+                    
+                    console.log('📶 Slow network mode activated');
+                }
+            }
+        }
+
+        // Initialize optimizations
+        optimizeForDevice();
+        optimizeForBattery();
+        optimizeForNetwork();
+
+        // Periodic checks
+        setInterval(checkTimeEffects, 60000); // Check every minute
+        setInterval(triggerSeasonalEffect, 300000); // Check every 5 minutes
+
+        // Advanced particle system
+        if (particlesEnabled) {
+            createAdvancedParticles();
+        }
+
+        // Console commands for power users
+        window.megaCommands = {
+            explosion: createMegaExplosion,
+            ultimate: createUltimateExplosion,
+            chaos: toggleChaosMode,
+            mega: toggleMegaMode,
+            particles: toggleParticles,
+            snow: () => createWeatherEffect('snow'),
+            rain: () => createWeatherEffect('rain'),
+            petals: () => createWeatherEffect('petals'),
+            leaves: () => createWeatherEffect('leaves'),
+            reset: resetRotation,
+            auto: autoRotate,
+            stats: () => ({
+                texts: textCount,
+                hearts: heartCount,
+                particles: particleCount,
+                fps: fps,
+                load: systemLoad + '%',
+                animations: allAnimations.length
+            })
+        };
+
+        // Final initialization
+        console.log('🚀 50-Direction MEGA Love Rain Loaded Successfully!');
+        console.log('🎮 Controls:');
+        console.log('  Keyboard: R(reset), A(auto), C(chaos), M(mega), P(particles)');
+        console.log('  Arrows: ←→(rotate), ↑↓(speed), +/-(zoom)');
+        console.log('  Special: Enter(mega), Escape(ultimate), Space(auto)');
+        console.log('🤏 Touch: Swipe(rotate), Pinch(zoom), Gestures(effects)');
+        console.log('🎯 Gestures: Circle(mega), Zigzag(ultimate), Multi-tap(chaos)');
+        console.log('🗣️ Voice: Double-click + say commands');
+        console.log('💻 Console: Use megaCommands object for advanced control');
+        console.log('📊 Total Animations: ' + allAnimations.length);
+        console.log('🌟 Groups: 8 Basic + 10 3D + 10 Wave + 10 Pattern + 12 Bounce');
+
+        // Easter egg - Konami code
+        let konamiCode = [];
+        const konamiSequence = [
+            'ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown',
+            'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight',
+            'KeyB', 'KeyA'
+        ];
+
+        document.addEventListener('keydown', function(e) {
+            konamiCode.push(e.code);
+            if (konamiCode.length > konamiSequence.length) {
+                konamiCode.shift();
+            }
+            
+            if (konamiCode.length === konamiSequence.length &&
+                konamiCode.every((key, index) => key === konamiSequence[index])) {
+                
+                // KONAMI CODE ACTIVATED!
+                console.log('🎮 KONAMI CODE ACTIVATED! ULTIMATE MEGA MODE!');
+                
+                // Activate everything
+                megaMode = true;
+                chaosMode = true;
+                particlesEnabled = true;
+                
+                // Create massive explosion
+                for (let i = 0; i < 200; i++) {
+                    setTimeout(() => {
+                        const animation = allAnimations[i % allAnimations.length];
+                        createMegaText(animation);
+                    }, i * 10);
+                }
+                
+                // Update UI
+                updateTransform();
+                updateIntervals();
+                
+                konamiCode = [];
+            }
+        });
+
+        // Performance warning
+        if (allAnimations.length !== 50) {
+            console.warn('⚠️ Animation count mismatch! Expected 50, got ' + allAnimations.length);
+        }
+
+        // Success message
+        setTimeout(() => {
+            console.log('✅ All systems operational! Enjoy the 50-direction MEGA love storm! 💖🚀');
+        }, 2000);
+
+    </script>
+</body>
+</html>
+
+
+

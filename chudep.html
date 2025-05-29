@@ -1,0 +1,1769 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>50 Direction MEGA Rain - Dark Edition</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            /* NỀN TỐI SIÊU ĐẸP */
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(120, 0, 255, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(255, 0, 150, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 40% 90%, rgba(0, 255, 200, 0.2) 0%, transparent 50%),
+                linear-gradient(135deg, #0a0a0a 0%, #1a0033 25%, #000511 50%, #1a0033 75%, #0a0a0a 100%);
+            overflow: hidden;
+            font-family: 'Arial', sans-serif;
+            height: 100vh;
+            width: 100vw;
+            position: fixed;
+            perspective: 2000px;
+            touch-action: none;
+        }
+
+        /* CHỮ SÁNG HỚN NHIỀU */
+        .flying-text {
+            position: absolute;
+            font-size: 1rem;
+            font-weight: bold;
+            color: #fff;
+            white-space: nowrap;
+            will-change: transform, opacity;
+            backface-visibility: hidden;
+            text-align: center;
+            /* TEXT SHADOW MẠNH HƠN */
+            text-shadow: 
+                0 0 10px currentColor,
+                0 0 20px currentColor,
+                0 0 30px currentColor,
+                2px 2px 4px rgba(0, 0, 0, 0.8);
+            border-radius: 8px;
+            padding: 4px 8px;
+            /* BACKGROUND ĐỂ CHỮ NỔI BẬT */
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(3px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        /* 15 MÀU SIÊU SÁNG */
+        .flying-text.pink { 
+            color: #ff69b4; 
+            background: rgba(255, 105, 180, 0.2);
+            text-shadow: 
+                0 0 15px #ff69b4,
+                0 0 25px #ff69b4,
+                0 0 35px #ff69b4,
+                2px 2px 4px rgba(0, 0, 0, 0.9);
+        }
+        .flying-text.blue { 
+            color: #00ffff; 
+            background: rgba(0, 255, 255, 0.2);
+            text-shadow: 
+                0 0 15px #00ffff,
+                0 0 25px #00ffff,
+                0 0 35px #00ffff,
+                2px 2px 4px rgba(0, 0, 0, 0.9);
+        }
+        .flying-text.green { 
+            color: #00ff88; 
+            background: rgba(0, 255, 136, 0.2);
+            text-shadow: 
+                0 0 15px #00ff88,
+                0 0 25px #00ff88,
+                0 0 35px #00ff88,
+                2px 2px 4px rgba(0, 0, 0, 0.9);
+        }
+        .flying-text.purple { 
+            color: #bb66ff; 
+            background: rgba(187, 102, 255, 0.2);
+            text-shadow: 
+                0 0 15px #bb66ff,
+                0 0 25px #bb66ff,
+                0 0 35px #bb66ff,
+                2px 2px 4px rgba(0, 0, 0, 0.9);
+        }
+        .flying-text.red { 
+            color: #ff4444; 
+            background: rgba(255, 68, 68, 0.2);
+            text-shadow: 
+                0 0 15px #ff4444,
+                0 0 25px #ff4444,
+                0 0 35px #ff4444,
+                2px 2px 4px rgba(0, 0, 0, 0.9);
+        }
+        .flying-text.orange { 
+            color: #ff8800; 
+            background: rgba(255, 136, 0, 0.2);
+            text-shadow: 
+                0 0 15px #ff8800,
+                0 0 25px #ff8800,
+                0 0 35px #ff8800,
+                2px 2px 4px rgba(0, 0, 0, 0.9);
+        }
+        .flying-text.yellow { 
+            color: #ffff44; 
+            background: rgba(255, 255, 68, 0.2);
+            text-shadow: 
+                0 0 15px #ffff44,
+                0 0 25px #ffff44,
+                0 0 35px #ffff44,
+                2px 2px 4px rgba(0, 0, 0, 0.9);
+        }
+        .flying-text.cyan { 
+            color: #44ffaa; 
+            background: rgba(68, 255, 170, 0.2);
+            text-shadow: 
+                0 0 15px #44ffaa,
+                0 0 25px #44ffaa,
+                0 0 35px #44ffaa,
+                2px 2px 4px rgba(0, 0, 0, 0.9);
+        }
+        .flying-text.magenta { 
+            color: #ff44ff; 
+            background: rgba(255, 68, 255, 0.2);
+            text-shadow: 
+                0 0 15px #ff44ff,
+                0 0 25px #ff44ff,
+                0 0 35px #ff44ff,
+                2px 2px 4px rgba(0, 0, 0, 0.9);
+        }
+        .flying-text.lime { 
+            color: #88ff44; 
+            background: rgba(136, 255, 68, 0.2);
+            text-shadow: 
+                0 0 15px #88ff44,
+                0 0 25px #88ff44,
+                0 0 35px #88ff44,
+                2px 2px 4px rgba(0, 0, 0, 0.9);
+        }
+        .flying-text.gold { 
+            color: #ffd700; 
+            background: rgba(255, 215, 0, 0.2);
+            text-shadow: 
+                0 0 15px #ffd700,
+                0 0 25px #ffd700,
+                0 0 35px #ffd700,
+                2px 2px 4px rgba(0, 0, 0, 0.9);
+        }
+        .flying-text.silver { 
+            color: #e0e0e0; 
+            background: rgba(224, 224, 224, 0.2);
+            text-shadow: 
+                0 0 15px #e0e0e0,
+                0 0 25px #e0e0e0,
+                0 0 35px #e0e0e0,
+                2px 2px 4px rgba(0, 0, 0, 0.9);
+        }
+        .flying-text.coral { 
+            color: #ff7f50; 
+            background: rgba(255, 127, 80, 0.2);
+            text-shadow: 
+                0 0 15px #ff7f50,
+                0 0 25px #ff7f50,
+                0 0 35px #ff7f50,
+                2px 2px 4px rgba(0, 0, 0, 0.9);
+        }
+        .flying-text.violet { 
+            color: #ee82ee; 
+            background: rgba(238, 130, 238, 0.2);
+            text-shadow: 
+                0 0 15px #ee82ee,
+                0 0 25px #ee82ee,
+                0 0 35px #ee82ee,
+                2px 2px 4px rgba(0, 0, 0, 0.9);
+        }
+        .flying-text.turquoise { 
+            color: #40e0d0; 
+            background: rgba(64, 224, 208, 0.2);
+            text-shadow: 
+                0 0 15px #40e0d0,
+                0 0 25px #40e0d0,
+                0 0 35px #40e0d0,
+                2px 2px 4px rgba(0, 0, 0, 0.9);
+        }
+
+        /* UI CONTROLS - NỀN TỐI, CHỮ SÁNG */
+        .ui-layer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        .ui-layer > * {
+            pointer-events: auto;
+        }
+
+        .rotation-display {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: rgba(0, 0, 0, 0.85);
+            color: #ffffff;
+            padding: 8px 12px;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            backdrop-filter: blur(15px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            min-width: 200px;
+            box-shadow: 
+                0 4px 20px rgba(0, 0, 0, 0.7),
+                inset 0 1px 3px rgba(255, 255, 255, 0.1);
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+        }
+
+        .rotation-display div {
+            margin: 2px 0;
+            color: #ffffff;
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
+        }
+
+        .controls {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+
+        .control-btn {
+            background: rgba(0, 0, 0, 0.8);
+            color: #ffffff;
+            border: 2px solid rgba(255, 105, 180, 0.8);
+            padding: 8px 12px;
+            border-radius: 10px;
+            font-size: 0.65rem;
+            font-weight: bold;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            box-shadow: 
+                0 2px 15px rgba(255, 105, 180, 0.4),
+                inset 0 1px 3px rgba(255, 255, 255, 0.1);
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+        }
+
+        .control-btn:hover {
+            background: rgba(255, 105, 180, 0.3);
+            transform: scale(1.05);
+            box-shadow: 
+                0 4px 20px rgba(255, 105, 180, 0.6),
+                inset 0 1px 5px rgba(255, 255, 255, 0.2);
+            color: #ffffff;
+            text-shadow: 0 0 12px rgba(255, 255, 255, 1);
+        }
+
+        .direction-display {
+            position: absolute;
+            bottom: 120px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.85);
+            color: #ffffff;
+            padding: 6px 12px;
+            border-radius: 10px;
+            font-size: 0.65rem;
+            font-weight: bold;
+            backdrop-filter: blur(15px);
+            border: 2px solid rgba(0, 255, 0, 0.7);
+            text-align: center;
+            max-width: 95vw;
+            box-shadow: 
+                0 3px 15px rgba(0, 255, 0, 0.4),
+                inset 0 1px 3px rgba(255, 255, 255, 0.1);
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+        }
+
+        .text-counter {
+            position: absolute;
+            bottom: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.85);
+            color: #ffffff;
+            padding: 6px 12px;
+            border-radius: 10px;
+            font-size: 0.65rem;
+            font-weight: bold;
+            backdrop-filter: blur(15px);
+            border: 2px solid rgba(255, 105, 0, 0.7);
+            box-shadow: 
+                0 3px 15px rgba(255, 105, 0, 0.4),
+                inset 0 1px 3px rgba(255, 255, 255, 0.1);
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+        }
+
+        .performance-display {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.85);
+            color: #ffffff;
+            padding: 6px 12px;
+            border-radius: 10px;
+            font-size: 0.65rem;
+            font-weight: bold;
+            backdrop-filter: blur(15px);
+            border: 2px solid rgba(0, 150, 255, 0.7);
+            box-shadow: 
+                0 3px 15px rgba(0, 150, 255, 0.4),
+                inset 0 1px 3px rgba(255, 255, 255, 0.1);
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+        }
+
+        .mega-display {
+            position: absolute;
+            bottom: 5px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.9);
+            color: #ffffff;
+            padding: 6px 10px;
+            border-radius: 10px;
+            font-size: 0.6rem;
+            font-weight: bold;
+            backdrop-filter: blur(15px);
+            border: 2px solid rgba(255, 0, 255, 0.8);
+            text-align: center;
+            max-width: 98vw;
+            box-shadow: 
+                0 3px 20px rgba(255, 0, 255, 0.5),
+                inset 0 1px 3px rgba(255, 255, 255, 0.2);
+            text-shadow: 0 0 12px rgba(255, 255, 255, 1);
+        }
+
+        /* CONTAINER */
+        .container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            transform-style: preserve-3d;
+            transition: none;
+            will-change: transform;
+            transform-origin: center center;
+            transform: translate3d(0,0,0);
+        }
+
+        .container.smooth {
+            transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        /* TIM BAY - SÁNG HƠN */
+        .floating-hearts {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            transform-style: preserve-3d;
+        }
+
+        .heart {
+            position: absolute;
+            color: #ff6b6b;
+            font-size: 20px;
+            will-change: transform;
+            backface-visibility: hidden;
+            animation: floatUp 7s infinite linear;
+            filter: 
+                drop-shadow(0 0 12px rgba(255, 107, 107, 0.8))
+                drop-shadow(0 0 24px rgba(255, 107, 107, 0.6))
+                brightness(1.5);
+            text-shadow: 0 0 15px rgba(255, 107, 107, 1);
+        }
+
+        @keyframes floatUp {
+            0% { transform: translate3d(0, 100vh, 0) scale(1); opacity: 1; }
+            50% { transform: translate3d(0, 50vh, 100px) scale(1.2); opacity: 1; }
+            100% { transform: translate3d(0, -50px, 0) scale(0.8); opacity: 0; }
+        }
+
+        /* FLOATING TEXT */
+        .floating-text {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 5;
+            transform-style: preserve-3d;
+        }
+
+        /* PARTICLES - SÁNG HƠN */
+        .particle-system {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            animation: particleFloat 8s infinite linear;
+            box-shadow: 
+                0 0 6px rgba(255, 255, 255, 0.8),
+                0 0 12px rgba(255, 255, 255, 0.6);
+        }
+
+        @keyframes particleFloat {
+            0% { transform: translate3d(0, 100vh, 0); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translate3d(0, -50px, 0); opacity: 0; }
+        }
+
+        /* MOBILE RESPONSIVE */
+        @media (max-width: 480px) {
+            .flying-text { 
+                font-size: 0.9rem;
+                padding: 3px 6px;
+                /* MOBILE - CHỮ SÁNG HƠN */
+                text-shadow: 
+                    0 0 8px currentColor,
+                    0 0 16px currentColor,
+                    0 0 24px currentColor,
+                    1px 1px 3px rgba(0, 0, 0, 0.9);
+                background: rgba(0, 0, 0, 0.7);
+                border: 1px solid rgba(255, 255, 255, 0.3);
+            }
+            .heart { 
+                font-size: 18px;
+                filter: 
+                    drop-shadow(0 0 10px rgba(255, 107, 107, 0.9))
+                    drop-shadow(0 0 20px rgba(255, 107, 107, 0.7))
+                    brightness(1.6);
+            }
+            .rotation-display, .control-btn, 
+            .text-counter, .direction-display, .performance-display, .mega-display {
+                font-size: 0.55rem;
+                padding: 4px 6px;
+                background: rgba(0, 0, 0, 0.9);
+                color: #ffffff;
+                text-shadow: 0 0 8px rgba(255, 255, 255, 0.9);
+            }
+            .controls { gap: 4px; }
+            .rotation-display { min-width: 160px; }
+        }
+
+        /* DARK MODE SPECIFIC IMPROVEMENTS */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 10% 20%, rgba(120, 0, 255, 0.1) 0%, transparent 30%),
+                radial-gradient(circle at 90% 80%, rgba(255, 0, 120, 0.1) 0%, transparent 30%),
+                radial-gradient(circle at 50% 50%, rgba(0, 255, 150, 0.05) 0%, transparent 40%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        /* TẤT CẢ 50 ANIMATIONS GIỐNG Y HỆT - CHỈ COPY TỪ CODE TRƯỚC */
+        
+        /* Group 1: Basic 8 directions */
+        @keyframes fallFromTop { 0% { transform: translate3d(0, -80px, 0); opacity: 0; } 15% { opacity: 1; } 85% { opacity: 1; } 100% { transform: translate3d(0, calc(100vh + 50px), 0); opacity: 0; } }
+        @keyframes fallFromBottom { 0% { transform: translate3d(0, calc(100vh + 50px), 0); opacity: 0; } 15% { opacity: 1; } 85% { opacity: 1; } 100% { transform: translate3d(0, -80px, 0); opacity: 0; } }
+        @keyframes fallFromLeft { 0% { transform: translate3d(-80px, 0, 0); opacity: 0; } 15% { opacity: 1; } 85% { opacity: 1; } 100% { transform: translate3d(calc(100vw + 50px), 0, 0); opacity: 0; } }
+        @keyframes fallFromRight { 0% { transform: translate3d(calc(100vw + 50px), 0, 0); opacity: 0; } 15% { opacity: 1; } 85% { opacity: 1; } 100% { transform: translate3d(-80px, 0, 0); opacity: 0; } }
+        @keyframes fallDiagonalTL { 0% { transform: translate3d(-50px, -50px, 0); opacity: 0; } 15% { opacity: 1; } 85% { opacity: 1; } 100% { transform: translate3d(calc(100vw + 50px), calc(100vh + 50px), 0); opacity: 0; } }
+        @keyframes fallDiagonalTR { 0% { transform: translate3d(calc(100vw + 50px), -50px, 0); opacity: 0; } 15% { opacity: 1; } 85% { opacity: 1; } 100% { transform: translate3d(-50px, calc(100vh + 50px), 0); opacity: 0; } }
+        @keyframes fallDiagonalBL { 0% { transform: translate3d(-50px, calc(100vh + 50px), 0); opacity: 0; } 15% { opacity: 1; } 85% { opacity: 1; } 100% { transform: translate3d(calc(100vw + 50px), -50px, 0); opacity: 0; } }
+        @keyframes fallDiagonalBR { 0% { transform: translate3d(calc(100vw + 50px), calc(100vh + 50px), 0); opacity: 0; } 15% { opacity: 1; } 85% { opacity: 1; } 100% { transform: translate3d(-50px, -50px, 0); opacity: 0; } }
+
+        /* Group 2: 3D Depth Effects (10) */
+        @keyframes fall3DForward { 0% { transform: translate3d(0, -50px, 400px) scale(0.2); opacity: 0; } 30% { transform: translate3d(0, 30vh, 200px) scale(0.7); opacity: 1; } 70% { transform: translate3d(0, 70vh, -200px) scale(1.3); opacity: 1; } 100% { transform: translate3d(0, calc(100vh + 50px), -400px) scale(0.3); opacity: 0; } }
+        @keyframes fall3DBackward { 0% { transform: translate3d(0, calc(100vh + 50px), -400px) scale(0.2); opacity: 0; } 30% { transform: translate3d(0, 70vh, -200px) scale(0.7); opacity: 1; } 70% { transform: translate3d(0, 30vh, 200px) scale(1.3); opacity: 1; } 100% { transform: translate3d(0, -50px, 400px) scale(0.3); opacity: 0; } }
+        @keyframes fall3DLeft { 0% { transform: translate3d(-200px, 0, 300px) scale(0.3); opacity: 0; } 50% { transform: translate3d(50vw, 0, 0) scale(1.2); opacity: 1; } 100% { transform: translate3d(calc(100vw + 200px), 0, -300px) scale(0.3); opacity: 0; } }
+        @keyframes fall3DRight { 0% { transform: translate3d(calc(100vw + 200px), 0, 300px) scale(0.3); opacity: 0; } 50% { transform: translate3d(50vw, 0, 0) scale(1.2); opacity: 1; } 100% { transform: translate3d(-200px, 0, -300px) scale(0.3); opacity: 0; } }
+        @keyframes fall3DTopDeep { 0% { transform: translate3d(0, -100px, 500px) scale(0.1); opacity: 0; } 40% { transform: translate3d(0, 40vh, 100px) scale(0.9); opacity: 1; } 80% { transform: translate3d(0, 80vh, -300px) scale(1.4); opacity: 1; } 100% { transform: translate3d(0, calc(100vh + 100px), -500px) scale(0.1); opacity: 0; } }
+        @keyframes fall3DBottomDeep { 0% { transform: translate3d(0, calc(100vh + 100px), -500px) scale(0.1); opacity: 0; } 40% { transform: translate3d(0, 60vh, -300px) scale(0.9); opacity: 1; } 80% { transform: translate3d(0, 20vh, 100px) scale(1.4); opacity: 1; } 100% { transform: translate3d(0, -100px, 500px) scale(0.1); opacity: 0; } }
+        @keyframes fall3DCenterZoom { 0% { transform: translate3d(50vw, 50vh, 600px) scale(0.05); opacity: 0; } 30% { transform: translate3d(50vw, 50vh, 200px) scale(0.8); opacity: 0.8; } 50% { transform: translate3d(50vw, 50vh, 0) scale(1.5); opacity: 1; } 70% { transform: translate3d(50vw, 50vh, -200px) scale(1.2); opacity: 1; } 100% { transform: translate3d(50vw, 50vh, -600px) scale(0.05); opacity: 0; } }
+        @keyframes fall3DSpiral { 0% { transform: translate3d(50vw, -50px, 300px) rotateY(0deg) rotateZ(0deg) scale(0.3); opacity: 0; } 25% { transform: translate3d(calc(50vw + 150px), 25vh, 150px) rotateY(90deg) rotateZ(90deg) scale(0.8); opacity: 1; } 50% { transform: translate3d(50vw, 50vh, 0) rotateY(180deg) rotateZ(180deg) scale(1.2); opacity: 1; } 75% { transform: translate3d(calc(50vw - 150px), 75vh, -150px) rotateY(270deg) rotateZ(270deg) scale(0.9); opacity: 1; } 100% { transform: translate3d(50vw, calc(100vh + 50px), -300px) rotateY(360deg) rotateZ(360deg) scale(0.3); opacity: 0; } }
+        @keyframes fall3DOrbit { 0% { transform: translate3d(50vw, 50vh, 400px) rotateY(0deg) rotateX(0deg) scale(0.2); opacity: 0; } 20% { transform: translate3d(calc(50vw + 200px), calc(50vh - 100px), 200px) rotateY(72deg) rotateX(72deg) scale(0.7); opacity: 1; } 40% { transform: translate3d(calc(50vw + 200px), calc(50vh + 100px), 0) rotateY(144deg) rotateX(144deg) scale(1); opacity: 1; } 60% { transform: translate3d(calc(50vw - 200px), calc(50vh + 100px), -200px) rotateY(216deg) rotateX(216deg) scale(1.1); opacity: 1; } 80% { transform: translate3d(calc(50vw - 200px), calc(50vh - 100px), -300px) rotateY(288deg) rotateX(288deg) scale(0.8); opacity: 1; } 100% { transform: translate3d(50vw, 50vh, -400px) rotateY(360deg) rotateX(360deg) scale(0.2); opacity: 0; } }
+                @keyframes fall3DTornado { 0% { transform: translate3d(50vw, calc(100vh + 100px), 300px) rotateY(0deg) rotateZ(0deg) scale(0.2); opacity: 0; } 25% { transform: translate3d(calc(50vw + 100px), 75vh, 150px) rotateY(180deg) rotateZ(90deg) scale(0.8); opacity: 1; } 50% { transform: translate3d(calc(50vw - 100px), 50vh, 0) rotateY(360deg) rotateZ(180deg) scale(1.3); opacity: 1; } 75% { transform: translate3d(calc(50vw + 150px), 25vh, -150px) rotateY(540deg) rotateZ(270deg) scale(1.1); opacity: 1; } 100% { transform: translate3d(50vw, -100px, -300px) rotateY(720deg) rotateZ(360deg) scale(0.2); opacity: 0; } }
+
+        /* Group 3: Wave & Flow Effects (10) */
+        @keyframes waveHorizontal { 0% { transform: translate3d(-100px, 50vh, 0); opacity: 0; } 25% { transform: translate3d(25vw, calc(50vh - 60px), 50px); opacity: 1; } 50% { transform: translate3d(50vw, 50vh, 100px); opacity: 1; } 75% { transform: translate3d(75vw, calc(50vh + 60px), 50px); opacity: 1; } 100% { transform: translate3d(calc(100vw + 100px), 50vh, 0); opacity: 0; } }
+        @keyframes waveVertical { 0% { transform: translate3d(50vw, calc(100vh + 80px), 0); opacity: 0; } 25% { transform: translate3d(calc(50vw + 60px), 75vh, 50px); opacity: 1; } 50% { transform: translate3d(50vw, 50vh, 100px); opacity: 1; } 75% { transform: translate3d(calc(50vw - 60px), 25vh, 50px); opacity: 1; } 100% { transform: translate3d(50vw, -80px, 0); opacity: 0; } }
+        @keyframes waveSine { 0% { transform: translate3d(0, 50vh, 100px); opacity: 0; } 12.5% { transform: translate3d(12.5vw, calc(50vh - 80px), 80px); opacity: 1; } 25% { transform: translate3d(25vw, 50vh, 60px); opacity: 1; } 37.5% { transform: translate3d(37.5vw, calc(50vh + 80px), 40px); opacity: 1; } 50% { transform: translate3d(50vw, 50vh, 20px); opacity: 1; } 62.5% { transform: translate3d(62.5vw, calc(50vh - 80px), 0px); opacity: 1; } 75% { transform: translate3d(75vw, 50vh, -20px); opacity: 1; } 87.5% { transform: translate3d(87.5vw, calc(50vh + 80px), -40px); opacity: 1; } 100% { transform: translate3d(100vw, 50vh, -60px); opacity: 0; } }
+        @keyframes waveCosine { 0% { transform: translate3d(0, calc(50vh + 80px), 100px); opacity: 0; } 12.5% { transform: translate3d(12.5vw, 50vh, 80px); opacity: 1; } 25% { transform: translate3d(25vw, calc(50vh - 80px), 60px); opacity: 1; } 37.5% { transform: translate3d(37.5vw, 50vh, 40px); opacity: 1; } 50% { transform: translate3d(50vw, calc(50vh + 80px), 20px); opacity: 1; } 62.5% { transform: translate3d(62.5vw, 50vh, 0px); opacity: 1; } 75% { transform: translate3d(75vw, calc(50vh - 80px), -20px); opacity: 1; } 87.5% { transform: translate3d(87.5vw, 50vh, -40px); opacity: 1; } 100% { transform: translate3d(100vw, calc(50vh + 80px), -60px); opacity: 0; } }
+        @keyframes waveSpiral3D { 0% { transform: translate3d(50vw, 50vh, 400px) rotateY(0deg); opacity: 0; } 20% { transform: translate3d(calc(50vw + 150px), calc(50vh - 75px), 200px) rotateY(144deg); opacity: 1; } 40% { transform: translate3d(calc(50vw + 100px), calc(50vh + 100px), 0) rotateY(288deg); opacity: 1; } 60% { transform: translate3d(calc(50vw - 100px), calc(50vh + 50px), -200px) rotateY(432deg); opacity: 1; } 80% { transform: translate3d(calc(50vw - 150px), calc(50vh - 100px), -300px) rotateY(576deg); opacity: 1; } 100% { transform: translate3d(50vw, 50vh, -400px) rotateY(720deg); opacity: 0; } }
+        @keyframes waveCircular { 0% { transform: translate3d(calc(50vw + 200px), 50vh, 150px); opacity: 0; } 12.5% { transform: translate3d(calc(50vw + 141px), calc(50vh - 141px), 100px); opacity: 1; } 25% { transform: translate3d(50vw, calc(50vh - 200px), 50px); opacity: 1; } 37.5% { transform: translate3d(calc(50vw - 141px), calc(50vh - 141px), 0); opacity: 1; } 50% { transform: translate3d(calc(50vw - 200px), 50vh, -50px); opacity: 1; } 62.5% { transform: translate3d(calc(50vw - 141px), calc(50vh + 141px), -100px); opacity: 1; } 75% { transform: translate3d(50vw, calc(50vh + 200px), -150px); opacity: 1; } 87.5% { transform: translate3d(calc(50vw + 141px), calc(50vh + 141px), -100px); opacity: 1; } 100% { transform: translate3d(calc(50vw + 200px), 50vh, 150px); opacity: 0; } }
+        @keyframes waveInfinity { 0% { transform: translate3d(20vw, 40vh, 100px); opacity: 0; } 12.5% { transform: translate3d(35vw, 30vh, 75px); opacity: 1; } 25% { transform: translate3d(50vw, 40vh, 50px); opacity: 1; } 37.5% { transform: translate3d(65vw, 60vh, 25px); opacity: 1; } 50% { transform: translate3d(80vw, 50vh, 0); opacity: 1; } 62.5% { transform: translate3d(65vw, 40vh, -25px); opacity: 1; } 75% { transform: translate3d(50vw, 60vh, -50px); opacity: 1; } 87.5% { transform: translate3d(35vw, 70vh, -75px); opacity: 1; } 100% { transform: translate3d(20vw, 60vh, -100px); opacity: 0; } }
+        @keyframes wavePendulum { 0% { transform: translate3d(calc(50vw - 200px), 20vh, 100px) rotateZ(-45deg); opacity: 0; } 25% { transform: translate3d(50vw, 50vh, 50px) rotateZ(0deg); opacity: 1; } 50% { transform: translate3d(calc(50vw + 200px), 80vh, 0) rotateZ(45deg); opacity: 1; } 75% { transform: translate3d(50vw, 50vh, -50px) rotateZ(0deg); opacity: 1; } 100% { transform: translate3d(calc(50vw - 200px), 20vh, -100px) rotateZ(-45deg); opacity: 0; } }
+        @keyframes waveDouble { 0% { transform: translate3d(-50px, calc(50vh - 100px), 100px); opacity: 0; } 20% { transform: translate3d(20vw, calc(50vh + 50px), 60px); opacity: 1; } 40% { transform: translate3d(40vw, calc(50vh - 80px), 20px); opacity: 1; } 60% { transform: translate3d(60vw, calc(50vh + 60px), -20px); opacity: 1; } 80% { transform: translate3d(80vw, calc(50vh - 70px), -60px); opacity: 1; } 100% { transform: translate3d(calc(100vw + 50px), calc(50vh + 100px), -100px); opacity: 0; } }
+        @keyframes waveTriple { 0% { transform: translate3d(-60px, calc(50vh - 120px), 120px); opacity: 0; } 16% { transform: translate3d(16vw, calc(50vh + 60px), 80px); opacity: 1; } 32% { transform: translate3d(32vw, calc(50vh - 90px), 40px); opacity: 1; } 48% { transform: translate3d(48vw, calc(50vh + 75px), 0); opacity: 1; } 64% { transform: translate3d(64vw, calc(50vh - 100px), -40px); opacity: 1; } 80% { transform: translate3d(80vw, calc(50vh + 80px), -80px); opacity: 1; } 100% { transform: translate3d(calc(100vw + 60px), calc(50vh - 120px), -120px); opacity: 0; } }
+
+        /* Group 4: Complex Pattern Effects (10) */
+        @keyframes patternZigzag { 0% { transform: translate3d(-50px, -50px, 100px); opacity: 0; } 14% { transform: translate3d(14vw, 20vh, 70px); opacity: 1; } 28% { transform: translate3d(28vw, 80vh, 40px); opacity: 1; } 42% { transform: translate3d(42vw, 10vh, 10px); opacity: 1; } 56% { transform: translate3d(56vw, 90vh, -20px); opacity: 1; } 70% { transform: translate3d(70vw, 5vh, -50px); opacity: 1; } 84% { transform: translate3d(84vw, 85vh, -80px); opacity: 1; } 100% { transform: translate3d(calc(100vw + 50px), calc(100vh + 50px), -100px); opacity: 0; } }
+        @keyframes patternStar { 0% { transform: translate3d(50vw, calc(100vh + 50px), 150px); opacity: 0; } 10% { transform: translate3d(calc(50vw + 100px), 80vh, 100px); opacity: 1; } 20% { transform: translate3d(calc(50vw - 60px), 60vh, 50px); opacity: 1; } 30% { transform: translate3d(calc(50vw + 120px), 40vh, 0); opacity: 1; } 40% { transform: translate3d(calc(50vw - 80px), 20vh, -50px); opacity: 1; } 50% { transform: translate3d(50vw, 50vh, -100px); opacity: 1; } 60% { transform: translate3d(calc(50vw + 80px), 20vh, -50px); opacity: 1; } 70% { transform: translate3d(calc(50vw - 120px), 40vh, 0); opacity: 1; } 80% { transform: translate3d(calc(50vw + 60px), 60vh, 50px); opacity: 1; } 90% { transform: translate3d(calc(50vw - 100px), 80vh, 100px); opacity: 1; } 100% { transform: translate3d(50vw, -50px, 150px); opacity: 0; } }
+        @keyframes patternHeart { 0% { transform: translate3d(50vw, calc(100vh + 80px), 120px) scale(0.5); opacity: 0; } 20% { transform: translate3d(calc(50vw - 100px), 70vh, 80px) scale(0.8); opacity: 1; } 30% { transform: translate3d(calc(50vw - 50px), 50vh, 40px) scale(1); opacity: 1; } 40% { transform: translate3d(50vw, 40vh, 0) scale(1.2); opacity: 1; } 50% { transform: translate3d(calc(50vw + 50px), 50vh, -40px) scale(1); opacity: 1; } 60% { transform: translate3d(calc(50vw + 100px), 70vh, -80px) scale(0.8); opacity: 1; } 70% { transform: translate3d(calc(50vw + 70px), 90vh, -60px) scale(0.9); opacity: 1; } 80% { transform: translate3d(calc(50vw - 70px), 90vh, -60px) scale(0.9); opacity: 1; } 90% { transform: translate3d(50vw, calc(100vh - 10px), -100px) scale(0.6); opacity: 1; } 100% { transform: translate3d(50vw, -80px, -120px) scale(0.5); opacity: 0; } }
+        @keyframes patternFigure8 { 0% { transform: translate3d(50vw, 20vh, 100px); opacity: 0; } 12.5% { transform: translate3d(calc(50vw + 150px), 35vh, 75px); opacity: 1; } 25% { transform: translate3d(50vw, 50vh, 50px); opacity: 1; } 37.5% { transform: translate3d(calc(50vw - 150px), 65vh, 25px); opacity: 1; } 50% { transform: translate3d(50vw, 80vh, 0); opacity: 1; } 62.5% { transform: translate3d(calc(50vw + 150px), 65vh, -25px); opacity: 1; } 75% { transform: translate3d(50vw, 50vh, -50px); opacity: 1; } 87.5% { transform: translate3d(calc(50vw - 150px), 35vh, -75px); opacity: 1; } 100% { transform: translate3d(50vw, 20vh, -100px); opacity: 0; } }
+        @keyframes patternSpirograph { 0% { transform: translate3d(50vw, 50vh, 200px) rotateY(0deg) rotateZ(0deg); opacity: 0; } 10% { transform: translate3d(calc(50vw + 120px), calc(50vh - 80px), 150px) rotateY(72deg) rotateZ(144deg); opacity: 1; } 20% { transform: translate3d(calc(50vw + 50px), calc(50vh + 100px), 100px) rotateY(144deg) rotateZ(288deg); opacity: 1; } 30% { transform: translate3d(calc(50vw - 100px), calc(50vh + 30px), 50px) rotateY(216deg) rotateZ(432deg); opacity: 1; } 40% { transform: translate3d(calc(50vw - 80px), calc(50vh - 120px), 0) rotateY(288deg) rotateZ(576deg); opacity: 1; } 50% { transform: translate3d(calc(50vw + 40px), calc(50vh - 60px), -50px) rotateY(360deg) rotateZ(720deg); opacity: 1; } 60% { transform: translate3d(calc(50vw + 130px), calc(50vh + 70px), -100px) rotateY(432deg) rotateZ(864deg); opacity: 1; } 70% { transform: translate3d(calc(50vw - 20px), calc(50vh + 110px), -150px) rotateY(504deg) rotateZ(1008deg); opacity: 1; } 80% { transform: translate3d(calc(50vw - 110px), calc(50vh - 10px), -100px) rotateY(576deg) rotateZ(1152deg); opacity: 1; } 90% { transform: translate3d(calc(50vw - 40px), calc(50vh - 130px), -50px) rotateY(648deg) rotateZ(1296deg); opacity: 1; } 100% { transform: translate3d(50vw, 50vh, -200px) rotateY(720deg) rotateZ(1440deg); opacity: 0; } }
+        @keyframes patternFlower { 0% { transform: translate3d(50vw, 50vh, 150px) rotateZ(0deg) scale(0.3); opacity: 0; } 16% { transform: translate3d(calc(50vw + 100px), 50vh, 100px) rotateZ(60deg) scale(0.7); opacity: 1; } 32% { transform: translate3d(calc(50vw + 50px), calc(50vh - 87px), 50px) rotateZ(120deg) scale(1); opacity: 1; } 48% { transform: translate3d(calc(50vw - 50px), calc(50vh - 87px), 0) rotateZ(180deg) scale(1.2); opacity: 1; } 64% { transform: translate3d(calc(50vw - 100px), 50vh, -50px) rotateZ(240deg) scale(1); opacity: 1; } 80% { transform: translate3d(calc(50vw - 50px), calc(50vh + 87px), -100px) rotateZ(300deg) scale(0.7); opacity: 1; } 96% { transform: translate3d(calc(50vw + 50px), calc(50vh + 87px), -125px) rotateZ(360deg) scale(0.5); opacity: 1; } 100% { transform: translate3d(50vw, 50vh, -150px) rotateZ(360deg) scale(0.3); opacity: 0; } }
+        @keyframes patternDNA { 0% { transform: translate3d(40vw, calc(100vh + 50px), 100px) rotateY(0deg); opacity: 0; } 12.5% { transform: translate3d(60vw, 87.5vh, 75px) rotateY(90deg); opacity: 1; } 25% { transform: translate3d(40vw, 75vh, 50px) rotateY(180deg); opacity: 1; } 37.5% { transform: translate3d(60vw, 62.5vh, 25px) rotateY(270deg); opacity: 1; } 50% { transform: translate3d(40vw, 50vh, 0) rotateY(360deg); opacity: 1; } 62.5% { transform: translate3d(60vw, 37.5vh, -25px) rotateY(450deg); opacity: 1; } 75% { transform: translate3d(40vw, 25vh, -50px) rotateY(540deg); opacity: 1; } 87.5% { transform: translate3d(60vw, 12.5vh, -75px) rotateY(630deg); opacity: 1; } 100% { transform: translate3d(40vw, -50px, -100px) rotateY(720deg); opacity: 0; } }
+        @keyframes patternGalaxy { 0% { transform: translate3d(50vw, 50vh, 300px) rotateY(0deg) rotateX(0deg) rotateZ(0deg) scale(0.1); opacity: 0; } 20% { transform: translate3d(calc(50vw + 200px), calc(50vh - 100px), 150px) rotateY(144deg) rotateX(72deg) rotateZ(216deg) scale(0.6); opacity: 1; } 40% { transform: translate3d(calc(50vw + 100px), calc(50vh + 150px), 0) rotateY(288deg) rotateX(144deg) rotateZ(432deg) scale(1.2); opacity: 1; } 60% { transform: translate3d(calc(50vw - 150px), calc(50vh + 50px), -150px) rotateY(432deg) rotateX(216deg) rotateZ(648deg) scale(0.9); opacity: 1; } 80% { transform: translate3d(calc(50vw - 100px), calc(50vh - 200px), -100px) rotateY(576deg) rotateX(288deg) rotateZ(864deg) scale(0.7); opacity: 1; } 100% { transform: translate3d(50vw, 50vh, -300px) rotateY(720deg) rotateX(360deg) rotateZ(1080deg) scale(0.1); opacity: 0; } }
+        @keyframes patternMandala { 0% { transform: translate3d(50vw, 50vh, 250px) rotateY(0deg) rotateZ(0deg) scale(0.2); opacity: 0; } 10% { transform: translate3d(calc(50vw + 150px), 50vh, 200px) rotateY(72deg) rotateZ(144deg) scale(0.5); opacity: 1; } 20% { transform: translate3d(calc(50vw + 100px), calc(50vh - 120px), 150px) rotateY(144deg) rotateZ(288deg) scale(0.8); opacity: 1; } 30% { transform: translate3d(calc(50vw - 50px), calc(50vh - 150px), 100px) rotateY(216deg) rotateZ(432deg) scale(1.1); opacity: 1; } 40% { transform: translate3d(calc(50vw - 150px), calc(50vh - 50px), 50px) rotateY(288deg) rotateZ(576deg) scale(1.3); opacity: 1; } 50% { transform: translate3d(calc(50vw - 100px), calc(50vh + 120px), 0) rotateY(360deg) rotateZ(720deg) scale(1.5); opacity: 1; } 60% { transform: translate3d(calc(50vw + 50px), calc(50vh + 150px), -50px) rotateY(432deg) rotateZ(864deg) scale(1.2); opacity: 1; } 70% { transform: translate3d(calc(50vw + 150px), calc(50vh + 50px), -100px) rotateY(504deg) rotateZ(1008deg) scale(0.9); opacity: 1; } 80% { transform: translate3d(calc(50vw + 120px), calc(50vh - 80px), -150px) rotateY(576deg) rotateZ(1152deg) scale(0.6); opacity: 1; } 90% { transform: translate3d(calc(50vw - 30px), calc(50vh - 140px), -200px) rotateY(648deg) rotateZ(1296deg) scale(0.4); opacity: 1; } 100% { transform: translate3d(50vw, 50vh, -250px) rotateY(720deg) rotateZ(1440deg) scale(0.2); opacity: 0; } }
+        @keyframes patternChaos { 0% { transform: translate3d(calc(50vw + 300px), -100px, 200px) rotateY(0deg) rotateX(0deg) rotateZ(0deg) scale(0.3); opacity: 0; } 10% { transform: translate3d(calc(50vw - 200px), 15vh, 150px) rotateY(73deg) rotateX(146deg) rotateZ(73deg) scale(0.8); opacity: 1; } 20% { transform: translate3d(calc(50vw + 100px), 35vh, 100px) rotateY(146deg) rotateX(292deg) rotateZ(146deg) scale(1.1); opacity: 1; } 30% { transform: translate3d(calc(50vw - 250px), 55vh, 50px) rotateY(219deg) rotateX(438deg) rotateZ(219deg) scale(0.7); opacity: 1; } 40% { transform: translate3d(calc(50vw + 180px), 25vh, 0) rotateY(292deg) rotateX(584deg) rotateZ(292deg) scale(1.3); opacity: 1; } 50% { transform: translate3d(calc(50vw - 80px), 75vh, -50px) rotateY(365deg) rotateX(730deg) rotateZ(365deg) scale(0.9); opacity: 1; } 60% { transform: translate3d(calc(50vw + 180px), 45vh, -100px) rotateY(438deg) rotateX(876deg) rotateZ(438deg) scale(1.2); opacity: 1; } 70% { transform: translate3d(calc(50vw - 80px), 90vh, 50px) rotateY(511deg) rotateX(1022deg) rotateZ(511deg) scale(0.7); opacity: 1; } 80% { transform: translate3d(calc(50vw + 120px), 15vh, -200px) rotateY(584deg) rotateX(1168deg) rotateZ(584deg) scale(1.4); opacity: 1; } 90% { transform: translate3d(calc(50vw - 250px), 70vh, 150px) rotateY(657deg) rotateX(1314deg) rotateZ(657deg) scale(0.5); opacity: 1; } 100% { transform: translate3d(calc(50vw + 300px), calc(100vh + 100px), -300px) rotateY(730deg) rotateX(1460deg) rotateZ(730deg) scale(0.1); opacity: 0; } }
+
+        /* Group 5: Bounce & Physics Effects (12) */
+        @keyframes bounceCenter { 0% { transform: translate3d(50vw, -100px, 200px) scale(0.3); opacity: 0; } 20% { transform: translate3d(50vw, 20vh, 100px) scale(0.8); opacity: 1; } 40% { transform: translate3d(50vw, 45vh, 0) scale(1.3); opacity: 1; } 50% { transform: translate3d(50vw, 35vh, 50px) scale(1.1); opacity: 1; } 60% { transform: translate3d(50vw, 55vh, -50px) scale(1.2); opacity: 1; } 70% { transform: translate3d(50vw, 50vh, 0) scale(1); opacity: 1; } 80% { transform: translate3d(50vw, 65vh, -100px) scale(0.9); opacity: 1; } 90% { transform: translate3d(50vw, 80vh, -150px) scale(0.7); opacity: 1; } 100% { transform: translate3d(50vw, calc(100vh + 100px), -200px) scale(0.3); opacity: 0; } }
+        @keyframes bounceLeft { 0% { transform: translate3d(-150px, 50vh, 100px) scale(0.4); opacity: 0; } 25% { transform: translate3d(20vw, 30vh, 50px) scale(0.9); opacity: 1; } 40% { transform: translate3d(35vw, 50vh, 0) scale(1.2); opacity: 1; } 50% { transform: translate3d(25vw, 45vh, 25px) scale(1); opacity: 1; } 65% { transform: translate3d(45vw, 55vh, -25px) scale(1.1); opacity: 1; } 80% { transform: translate3d(70vw, 70vh, -75px) scale(0.8); opacity: 1; } 100% { transform: translate3d(calc(100vw + 150px), 50vh, -100px) scale(0.4); opacity: 0; } }
+        @keyframes bounceRight { 0% { transform: translate3d(calc(100vw + 150px), 50vh, 100px) scale(0.4); opacity: 0; } 25% { transform: translate3d(80vw, 30vh, 50px) scale(0.9); opacity: 1; } 40% { transform: translate3d(65vw, 50vh, 0) scale(1.2); opacity: 1; } 50% { transform: translate3d(75vw, 45vh, 25px) scale(1); opacity: 1; } 65% { transform: translate3d(55vw, 55vh, -25px) scale(1.1); opacity: 1; } 80% { transform: translate3d(30vw, 70vh, -75px) scale(0.8); opacity: 1; } 100% { transform: translate3d(-150px, 50vh, -100px) scale(0.4); opacity: 0; } }
+        @keyframes bounceMultiple { 0% { transform: translate3d(50vw, -50px, 150px) scale(0.5); opacity: 0; } 15% { transform: translate3d(50vw, 15vh, 100px) scale(0.8); opacity: 1; } 25% { transform: translate3d(50vw, 10vh, 75px) scale(0.9); opacity: 1; } 35% { transform: translate3d(50vw, 25vh, 50px) scale(1.1); opacity: 1; } 45% { transform: translate3d(50vw, 20vh, 25px) scale(1); opacity: 1; } 55% { transform: translate3d(50vw, 35vh, 0) scale(1.2); opacity: 1; } 65% { transform: translate3d(50vw, 30vh, -25px) scale(1.1); opacity: 1; } 75% { transform: translate3d(50vw, 50vh, -50px) scale(1); opacity: 1; } 85% { transform: translate3d(50vw, 70vh, -100px) scale(0.8); opacity: 1; } 100% { transform: translate3d(50vw, calc(100vh + 50px), -150px) scale(0.5); opacity: 0; } }
+        @keyframes bounceDiagonal { 0% { transform: translate3d(-50px, -50px, 100px) scale(0.4); opacity: 0; } 20% { transform: translate3d(20vw, 20vh, 50px) scale(0.8); opacity: 1; } 35% { transform: translate3d(35vw, 15vh, 25px) scale(1); opacity: 1; } 50% { transform: translate3d(50vw, 35vh, 0) scale(1.3); opacity: 1; } 65% { transform: translate3d(65vw, 55vh, -25px) scale(1.1); opacity: 1; } 80% { transform: translate3d(80vw, 75vh, -50px) scale(0.9); opacity: 1; } 100% { transform: translate3d(calc(100vw + 50px), calc(100vh + 50px), -100px) scale(0.4); opacity: 0; } }
+        @keyframes bounceRandom { 0% { transform: translate3d(30vw, -50px, 120px) scale(0.3); opacity: 0; } 12% { transform: translate3d(70vw, 15vh, 80px) scale(0.7); opacity: 1; } 24% { transform: translate3d(20vw, 35vh, 40px) scale(1.1); opacity: 1; } 36% { transform: translate3d(80vw, 25vh, 0) scale(0.9); opacity: 1; } 48% { transform: translate3d(40vw, 55vh, -40px) scale(1.3); opacity: 1; } 60% { transform: translate3d(90vw, 45vh, -20px) scale(1); opacity: 1; } 72% { transform: translate3d(10vw, 75vh, -80px) scale(0.8); opacity: 1; } 84% { transform: translate3d(60vw, 85vh, -60px) scale(1.1); opacity: 1; } 100% { transform: translate3d(85vw, calc(100vh + 50px), -120px) scale(0.3); opacity: 0; } }
+        @keyframes bounceElastic { 0% { transform: translate3d(50vw, -80px, 150px) scale(0.2); opacity: 0; } 20% { transform: translate3d(50vw, 40vh, 75px) scale(1.4); opacity: 1; } 30% { transform: translate3d(50vw, 20vh, 50px) scale(0.8); opacity: 1; } 40% { transform: translate3d(50vw, 50vh, 25px) scale(1.2); opacity: 1; } 50% { transform: translate3d(50vw, 35vh, 0) scale(0.9); opacity: 1; } 60% { transform: translate3d(50vw, 55vh, -25px) scale(1.1); opacity: 1; } 70% { transform: translate3d(50vw, 45vh, -50px) scale(0.95); opacity: 1; } 80% { transform: translate3d(50vw, 60vh, -75px) scale(1.05); opacity: 1; } 90% { transform: translate3d(50vw, 70vh, -100px) scale(0.85); opacity: 1; } 100% { transform: translate3d(50vw, calc(100vh + 80px), -150px) scale(0.2); opacity: 0; } }
+        @keyframes bounceGravity { 0% { transform: translate3d(50vw, -100px, 200px) scale(0.5); opacity: 0; } 25% { transform: translate3d(50vw, 30vh, 100px) scale(0.9); opacity: 1; } 35% { transform: translate3d(50vw, 50vh, 50px) scale(1.2); opacity: 1; } 42% { transform: translate3d(50vw, 40vh, 75px) scale(1.1); opacity: 1; } 50% { transform: translate3d(50vw, 55vh, 25px) scale(1.15); opacity: 1; } 57% { transform: translate3d(50vw, 50vh, 50px) scale(1.05); opacity: 1; } 65% { transform: translate3d(50vw, 60vh, 0) scale(1.1); opacity: 1; } 72% { transform: translate3d(50vw, 57vh, 25px) scale(1.02); opacity: 1; } 80% { transform: translate3d(50vw, 65vh, -25px) scale(1.05); opacity: 1; } 90% { transform: translate3d(50vw, 75vh, -75px) scale(0.9); opacity: 1; } 100% { transform: translate3d(50vw, calc(100vh + 100px), -200px) scale(0.5); opacity: 0; } }
+        @keyframes bounceSpring { 0% { transform: translate3d(50vw, calc(100vh + 100px), 150px) scale(0.4); opacity: 0; } 15% { transform: translate3d(50vw, 70vh, 100px) scale(0.8); opacity: 1; } 25% { transform: translate3d(50vw, 30vh, 50px) scale(1.3); opacity: 1; } 35% { transform: translate3d(50vw, 60vh, 75px) scale(0.9); opacity: 1; } 45% { transform: translate3d(50vw, 40vh, 25px) scale(1.1); opacity: 1; } 55% { transform: translate3d(50vw, 55vh, 50px) scale(0.95); opacity: 1; } 65% { transform: translate3d(50vw, 45vh, 0) scale(1.05); opacity: 1; } 75% { transform: translate3d(50vw, 52vh, 25px) scale(0.98); opacity: 1; } 85% { transform: translate3d(50vw, 48vh, -25px) scale(1.02); opacity: 1; } 95% { transform: translate3d(50vw, 50vh, -50px) scale(1); opacity: 1; } 100% { transform: translate3d(50vw, -100px, -150px) scale(0.4); opacity: 0; } }
+        @keyframes bouncePinball { 0% { transform: translate3d(10vw, -50px, 120px) scale(0.3); opacity: 0; } 12% { transform: translate3d(30vw, 25vh, 80px) scale(0.8); opacity: 1; } 20% { transform: translate3d(75vw, 15vh, 40px) scale(1.1); opacity: 1; } 28% { transform: translate3d(20vw, 45vh, 0) scale(0.9); opacity: 1; } 36% { transform: translate3d(85vw, 35vh, -20px) scale(1.2); opacity: 1; } 44% { transform: translate3d(15vw, 65vh, -40px) scale(0.7); opacity: 1; } 52% { transform: translate3d(90vw, 55vh, -60px) scale(1.3); opacity: 1; } 60% { transform: translate3d(25vw, 80vh, -80px) scale(0.85); opacity: 1; } 68% { transform: translate3d(80vw, 75vh, -60px) scale(1.1); opacity: 1; } 76% { transform: translate3d(40vw, 90vh, -40px) scale(0.9); opacity: 1; } 84% { transform: translate3d(70vw, 85vh, -20px) scale(1.05); opacity: 1; } 92% { transform: translate3d(55vw, 95vh, 0) scale(0.8); opacity: 1; } 100% { transform: translate3d(90vw, calc(100vh + 50px), -120px) scale(0.3); opacity: 0; } }
+        @keyframes bounceRubber { 0% { transform: translate3d(50vw, -80px, 200px) scale(0.2) scaleY(1); opacity: 0; } 20% { transform: translate3d(50vw, 35vh, 100px) scale(1.5) scaleY(0.6); opacity: 1; } 25% { transform: translate3d(50vw, 15vh, 75px) scale(0.7) scaleY(1.4); opacity: 1; } 35% { transform: translate3d(50vw, 45vh, 50px) scale(1.3) scaleY(0.7); opacity: 1; } 40% { transform: translate3d(50vw, 30vh, 25px) scale(0.8) scaleY(1.2); opacity: 1; } 50% { transform: translate3d(50vw, 52vh, 0) scale(1.1) scaleY(0.9); opacity: 1; } 55% { transform: translate3d(50vw, 42vh, 25px) scale(0.9) scaleY(1.1); opacity: 1; } 65% { transform: translate3d(50vw, 58vh, -25px) scale(1.05) scaleY(0.95); opacity: 1; } 70% { transform: translate3d(50vw, 48vh, -50px) scale(0.95) scaleY(1.05); opacity: 1; } 80% { transform: translate3d(50vw, 62vh, -75px) scale(1.02) scaleY(0.98); opacity: 1; } 85% { transform: translate3d(50vw, 52vh, -100px) scale(0.98) scaleY(1.02); opacity: 1; } 95% { transform: translate3d(50vw, 70vh, -150px) scale(1.01) scaleY(0.99); opacity: 1; } 100% { transform: translate3d(50vw, calc(100vh + 80px), -200px) scale(0.2) scaleY(1); opacity: 0; } }
+
+    </style>
+</head>
+<body>
+    <!-- UI LAYER -->
+    <div class="ui-layer">
+        <!-- Rotation Display -->
+        <div class="rotation-display">
+            <div>🎯 <span id="current-sector">Sector 1</span></div>
+            <div>🔄 <span id="rotation-angle">0°</span></div>
+            <div>🔍 <span id="zoom-level">100%</span></div>
+            <div>📍 <span id="current-position">Center</span></div>
+        </div>
+
+        <!-- Controls -->
+        <div class="controls">
+            <button class="control-btn" onclick="toggleMegaMode()">🚀 MEGA</button>
+            <button class="control-btn" onclick="autoRotate()">🌀 Auto</button>
+            <button class="control-btn" onclick="toggleChaosMode()">🔥 Chaos</button>
+            <button class="control-btn" onclick="resetRotation()">↺ Reset</button>
+            <button class="control-btn" onclick="toggleParticles()">✨ ON</button>
+        </div>
+
+        <!-- Direction Display -->
+        <div class="direction-display">
+            <span id="optimal-directions">🎯 Loading optimal directions...</span>
+        </div>
+
+        <!-- Text Counter -->
+        <div class="text-counter">
+            📝 <span id="text-count">0</span> | ❤️ <span id="heart-count">0</span> | ✨ <span id="particle-count">0</span>
+        </div>
+
+        <!-- Performance Display -->
+        <div class="performance-display">
+            🖥️ <span id="fps">60</span> FPS | 📊 <span id="quality">ULTRA</span> | 📈 <span id="load">0%</span>
+        </div>
+
+        <!-- MEGA Display -->
+        <div class="mega-display">
+            🌟 50-DIRECTION ULTIMATE LOVE RAIN 🌟 | Touch: Swipe/Pinch | Keys: R/A/C/M/P | Gestures: Circle/Zigzag
+        </div>
+    </div>
+
+    <!-- CONTAINER với 3D -->
+    <div class="container" id="container">
+        <div class="floating-text"></div>
+        <div class="floating-hearts"></div>
+        <div class="particle-system"></div>
+    </div>
+
+    <script>
+        // VARIABLES MEGA
+        let rotationY = 0;
+        let zoomLevel = 1;
+        let isRotating = false;
+        let isZooming = false;
+        let isAutoRotating = false;
+        let startX = 0;
+        let lastX = 0;
+        let initialPinchDistance = 0;
+        let initialZoom = 1;
+        let autoRotateInterval = null;
+        let currentSpeed = 60;
+        let megaMode = false;
+        let chaosMode = false;
+        let particlesEnabled = true;
+        
+        // Counters MEGA
+        let textCount = 0;
+        let heartCount = 0;
+        let particleCount = 0;
+        let fps = 60;
+        let systemLoad = 0;
+        
+        // Limits MEGA
+        let maxTexts = 100;
+        let maxHearts = 30;
+        let maxParticles = 50;
+
+        const container = document.getElementById('container');
+
+        // 100 LOVE WORDS MEGA
+        const loveWords = [
+            'Anh yêu em', 'I Love You', 'Forever', 'My Heart', 'Darling', 'Sweetheart',
+            'Honey', 'Baby', 'Angel', 'Princess', 'My Love', 'Soulmate', 'Beloved',
+            'Treasure', 'Sunshine', 'Moonlight', 'Star', 'Diamond', 'Pearl', 'Rose',
+            'Kiss', 'Hug', 'Dream', 'Wish', 'Hope', 'Joy', 'Smile', 'Laugh', 'Happy',
+            'Beautiful', 'Gorgeous', 'Perfect', 'Amazing', 'Wonderful', 'Magical',
+            'Sweet', 'Cute', 'Lovely', 'Adorable', 'Charming', 'Elegant', 'Grace',
+            'Passion', 'Romance', 'Devotion', 'Affection', 'Admiration', 'Adoration',
+            'Crush', 'Flame', 'Spark', 'Glow', 'Shine', 'Bright', 'Light', 'Warm',
+            'Tender', 'Gentle', 'Soft', 'Pure', 'True', 'Real', 'Deep', 'Strong',
+            'Endless', 'Eternal', 'Always', 'Together', 'Unity', 'Bond', 'Connection',
+            'Destiny', 'Fate', 'Lucky', 'Blessed', 'Gift', 'Present', 'Surprise',
+            'Memory', 'Moment', 'Time', 'Life', 'World', 'Universe', 'Everything',
+            'Only You', 'Just Us', 'You & Me', 'We Two', 'Couple', 'Pair', 'Match',
+            'Complete', 'Whole', 'Half', 'Part', 'Piece', 'Missing', 'Found', 'Home',
+            'Safe', 'Comfort', 'Peace', 'Calm', 'Rest', 'Sleep', 'Wake', 'Morning'
+        ];
+
+        // 15 COLORS MEGA BRIGHT
+        const colors = [
+            'pink', 'blue', 'green', 'purple', 'red', 'orange', 'yellow', 'cyan',
+            'magenta', 'lime', 'gold', 'silver', 'coral', 'violet', 'turquoise'
+        ];
+
+        // TẤT CẢ 50 ANIMATIONS DIRECTION
+        const allAnimations = [
+            // Group 1: Basic 8 directions
+            'fallFromTop', 'fallFromBottom', 'fallFromLeft', 'fallFromRight',
+            'fallDiagonalTL', 'fallDiagonalTR', 'fallDiagonalBL', 'fallDiagonalBR',
+            
+            // Group 2: 3D Depth Effects (10)
+            'fall3DForward', 'fall3DBackward', 'fall3DLeft', 'fall3DRight',
+            'fall3DTopDeep', 'fall3DBottomDeep', 'fall3DCenterZoom', 'fall3DSpiral',
+            'fall3DOrbit', 'fall3DTornado',
+            
+            // Group 3: Wave & Flow Effects (10)
+            'waveHorizontal', 'waveVertical', 'waveSine', 'waveCosine',
+            'waveSpiral3D', 'waveCircular', 'waveInfinity', 'wavePendulum',
+            'waveDouble', 'waveTriple',
+            
+            // Group 4: Complex Pattern Effects (10)
+            'patternZigzag', 'patternStar', 'patternHeart', 'patternFigure8',
+            'patternSpirograph', 'patternFlower', 'patternDNA', 'patternGalaxy',
+            'patternMandala', 'patternChaos',
+            
+            // Group 5: Bounce & Physics Effects (12)
+            'bounceCenter', 'bounceLeft', 'bounceRight', 'bounceMultiple',
+            'bounceDiagonal', 'bounceRandom', 'bounceElastic', 'bounceGravity',
+            'bounceSpring', 'bouncePinball', 'bounceRubber'
+        ];
+
+        console.log('🚀 Total animations loaded:', allAnimations.length);
+
+        // SECTOR SYSTEM - 10 sectors × 36° each
+        const sectors = [
+            { 
+                range: [0, 36], 
+                name: 'Front Center',
+                primary: ['fallFromTop', 'fallFromBottom', 'fall3DCenterZoom'],
+                secondary: ['bounceCenter', 'waveVertical', 'patternHeart'],
+                effects: ['fall3DForward', 'bounceElastic', 'patternMandala']
+            },
+            { 
+                range: [36, 72], 
+                name: 'Front-Right',
+                primary: ['fallFromRight', 'fallDiagonalTR', 'fall3DRight'],
+                secondary: ['bounceRight', 'waveHorizontal', 'patternStar'],
+                effects: ['fall3DSpiral', 'bouncePinball', 'patternSpirograph']
+            },
+            { 
+                range: [72, 108], 
+                name: 'Right Side',
+                primary: ['fallFromRight', 'fall3DRight', 'waveHorizontal'],
+                secondary: ['bounceRight', 'fallDiagonalBR', 'fall3DOrbit'],
+                effects: ['fall3DTornado', 'bounceRandom', 'patternChaos']
+            },
+            { 
+                range: [108, 144], 
+                name: 'Back-Right',
+                primary: ['fallDiagonalBR', 'fall3DBackward', 'fallFromBottom'],
+                secondary: ['bounceElastic', 'waveDouble', 'patternZigzag'],
+                effects: ['fall3DBottomDeep', 'bounceGravity', 'patternGalaxy']
+            },
+            { 
+                range: [144, 180], 
+                name: 'Back Center',
+                primary: ['fallFromBottom', 'fall3DBackward', 'bounceSpring'],
+                secondary: ['waveVertical', 'patternFigure8', 'bounceMultiple'],
+                effects: ['fall3DTopDeep', 'bounceRubber', 'patternDNA']
+            },
+            { 
+                range: [180, 216], 
+                name: 'Back-Left',
+                primary: ['fallDiagonalBL', 'fall3DBackward', 'fallFromBottom'],
+                secondary: ['bounceLeft', 'waveTriple', 'patternFlower'],
+                effects: ['fall3DBottomDeep', 'bounceGravity', 'patternMandala']
+            },
+            { 
+                range: [216, 252], 
+                name: 'Left Side',
+                primary: ['fallFromLeft', 'fall3DLeft', 'waveHorizontal'],
+                secondary: ['bounceLeft', 'fallDiagonalBL', 'fall3DSpiral'],
+                effects: ['fall3DOrbit', 'bouncePinball', 'patternChaos']
+            },
+            { 
+                range: [252, 288], 
+                name: 'Front-Left',
+                primary: ['fallFromLeft', 'fallDiagonalTL', 'fall3DLeft'],
+                secondary: ['bounceLeft', 'waveSine', 'patternStar'],
+                effects: ['fall3DTornado', 'bounceRandom', 'patternSpirograph']
+            },
+            { 
+                range: [288, 324], 
+                name: 'Front Deep',
+                primary: ['fallFromTop', 'fall3DForward', 'fall3DTopDeep'],
+                secondary: ['bounceCenter', 'waveCircular', 'patternHeart'],
+                effects: ['fall3DCenterZoom', 'bounceElastic', 'patternGalaxy']
+            },
+            { 
+                range: [324, 360], 
+                name: 'Right Deep',
+                primary: ['fallDiagonalTR', 'fall3DForward', 'waveInfinity'],
+                secondary: ['bounceCenter', 'wavePendulum', 'patternFigure8'],
+                effects: ['fall3DSpiral', 'bounceMultiple', 'patternDNA']
+            }
+        ];
+
+        // FUNCTIONS MEGA
+        function updateTransform() {
+            const normalizedRotation = ((rotationY % 360) + 360) % 360;
+            container.style.transform = 
+                `rotateY(${normalizedRotation}deg) scale3d(${zoomLevel}, ${zoomLevel}, ${zoomLevel})`;
+            
+            document.getElementById('rotation-angle').textContent = Math.round(normalizedRotation) + '°';
+            document.getElementById('zoom-level').textContent = Math.round(zoomLevel * 100) + '%';
+            
+            updateSectorDisplay();
+            updateOptimalDirections();
+        }
+
+        function updateSectorDisplay() {
+            const normalizedRotation = ((rotationY % 360) + 360) % 360;
+            const currentSector = sectors.find(sector => 
+                normalizedRotation >= sector.range[0] && normalizedRotation < sector.range[1]
+            );
+            
+            if (currentSector) {
+                document.getElementById('current-sector').textContent = 
+                    `${sectors.indexOf(currentSector) + 1}`;
+                document.getElementById('current-position').textContent = currentSector.name;
+            }
+        }
+
+        function getOptimalDirectionsForAngle() {
+            const normalizedRotation = ((rotationY % 360) + 360) % 360;
+            const currentSector = sectors.find(sector => 
+                normalizedRotation >= sector.range[0] && normalizedRotation < sector.range[1]
+            ) || sectors[0];
+            
+            return currentSector;
+        }
+
+        function updateOptimalDirections() {
+            const info = getOptimalDirectionsForAngle();
+            document.getElementById('optimal-directions').textContent = 
+                `🎯 ${info.name}: Primary(${info.primary.length}) + Secondary(${info.secondary.length}) + FX(${info.effects.length})`;
+        }
+
+        function updateCounters() {
+            document.getElementById('text-count').textContent = textCount;
+            document.getElementById('heart-count').textContent = heartCount;
+            document.getElementById('particle-count').textContent = particleCount;
+            document.getElementById('load').textContent = 
+                Math.round(((textCount + heartCount + particleCount) / (maxTexts + maxHearts + maxParticles)) * 100);
+        }
+
+        // TOGGLE FUNCTIONS MEGA
+        function toggleMegaMode() {
+            megaMode = !megaMode;
+            const megaBtn = document.querySelectorAll('.control-btn')[0];
+            
+            if (megaMode) {
+                currentSpeed = 30; // Siêu nhanh
+                maxTexts = 150;
+                maxHearts = 50;
+                megaBtn.style.background = 'rgba(255, 215, 0, 0.8)';
+                megaBtn.style.borderColor = 'rgba(255, 215, 0, 1)';
+                megaBtn.textContent = '🚀 MEGA+';
+            } else {
+                currentSpeed = chaosMode ? 20 : 60;
+                maxTexts = chaosMode ? 200 : 100;
+                maxHearts = chaosMode ? 60 : 30;
+                megaBtn.style.background = 'rgba(0, 0, 0, 0.8)';
+                megaBtn.style.borderColor = 'rgba(255, 105, 180, 0.8)';
+                megaBtn.textContent = '🚀 MEGA';
+            }
+            updateTransform();
+            updateIntervals();
+        }
+
+        function toggleChaosMode() {
+            chaosMode = !chaosMode;
+            const chaosBtn = document.querySelectorAll('.control-btn')[2];
+            
+            if (chaosMode) {
+                currentSpeed = 20; // Siêu siêu nhanh
+                maxTexts = 200;
+                maxHearts = 60;
+                chaosBtn.style.background = 'rgba(255, 0, 0, 0.8)';
+                chaosBtn.style.borderColor = 'rgba(255, 0, 0, 1)';
+                chaosBtn.textContent = '🌪️ CHAOS+';
+                
+                // Chaos burst - random tất cả 50 hướng
+                for (let i = 0; i < 25; i++) {
+                    setTimeout(() => {
+                        const randomAnimation = allAnimations[Math.floor(Math.random() * allAnimations.length)];
+                        createChaosText(randomAnimation);
+                    }, i * 30);
+                }
+            } else {
+                currentSpeed = megaMode ? 30 : 60;
+                maxTexts = megaMode ? 150 : 100;
+                maxHearts = megaMode ? 50 : 30;
+                chaosBtn.style.background = 'rgba(0, 0, 0, 0.8)';
+                chaosBtn.style.borderColor = 'rgba(255, 105, 180, 0.8)';
+                chaosBtn.textContent = '🔥 Chaos';
+            }
+            updateTransform();
+            updateIntervals();
+        }
+
+        // Toggle particles
+        function toggleParticles() {
+            particlesEnabled = !particlesEnabled;
+            const particleBtn = document.querySelectorAll('.control-btn')[4];
+            
+            if (particlesEnabled) {
+                particleBtn.style.background = 'rgba(255, 255, 255, 0.3)';
+                particleBtn.style.borderColor = 'rgba(255, 255, 255, 0.8)';
+                particleBtn.textContent = '✨ ON';
+                createParticleSystem();
+            } else {
+                particleBtn.style.background = 'rgba(100, 100, 100, 0.3)';
+                particleBtn.style.borderColor = 'rgba(100, 100, 100, 0.6)';
+                particleBtn.textContent = '✨ OFF';
+                document.querySelector('.particle-system').innerHTML = '';
+                particleCount = 0;
+            }
+            updateCounters();
+        }
+
+        // Reset rotation
+        function resetRotation() {
+            rotationY = 0;
+            zoomLevel = 1;
+            container.classList.add('smooth');
+            updateTransform();
+            setTimeout(() => container.classList.remove('smooth'), 400);
+        }
+
+        // Auto rotate
+        function autoRotate() {
+            if (isAutoRotating) {
+                clearInterval(autoRotateInterval);
+                isAutoRotating = false;
+                document.querySelectorAll('.control-btn')[1].textContent = '🌀 Auto';
+                document.querySelectorAll('.control-btn')[1].style.background = 'rgba(0, 0, 0, 0.8)';
+            } else {
+                startAutoRotate();
+            }
+        }
+
+        function startAutoRotate() {
+            isAutoRotating = true;
+            const autoBtn = document.querySelectorAll('.control-btn')[1];
+            autoBtn.textContent = '⏸️ Stop';
+            autoBtn.style.background = 'rgba(0, 255, 0, 0.3)';
+            autoBtn.style.borderColor = 'rgba(0, 255, 0, 0.8)';
+            
+            autoRotateInterval = setInterval(() => {
+                rotationY += 7.2; // 50 positions = 360/50 = 7.2°
+                rotationY = rotationY % 360;
+                updateTransform();
+            }, 200);
+        }
+
+        // Touch controls MEGA với gesture recognition
+        let touchStartTime = 0;
+        let touchCount = 0;
+        let gesturePoints = [];
+
+        container.addEventListener('touchstart', function(e) {
+            e.preventDefault();
+            touchStartTime = Date.now();
+            gesturePoints = [];
+            
+            if (e.touches.length === 1) {
+                startX = e.touches[0].clientX;
+                lastX = startX;
+                isRotating = true;
+                
+                // Bắt đầu track gesture
+                gesturePoints.push({
+                    x: e.touches[0].clientX,
+                    y: e.touches[0].clientY,
+                    time: touchStartTime
+                });
+            } else if (e.touches.length === 2) {
+                const touch1 = e.touches[0];
+                const touch2 = e.touches[1];
+                initialPinchDistance = Math.sqrt(
+                    Math.pow(touch2.clientX - touch1.clientX, 2) +
+                    Math.pow(touch2.clientY - touch1.clientY, 2)
+                );
+                initialZoom = zoomLevel;
+                isZooming = true;
+                isRotating = false;
+            }
+        });
+
+        container.addEventListener('touchmove', function(e) {
+            e.preventDefault();
+            
+            if (e.touches.length === 1 && isRotating && !isZooming) {
+                const currentX = e.touches[0].clientX;
+                const deltaX = currentX - lastX;
+                rotationY += deltaX * 0.5;
+                rotationY = rotationY % 360;
+                lastX = currentX;
+                updateTransform();
+                
+                // Track gesture tiếp
+                gesturePoints.push({
+                    x: currentX,
+                    y: e.touches[0].clientY,
+                    time: Date.now()
+                });
+            } else if (e.touches.length === 2 && isZooming) {
+                const touch1 = e.touches[0];
+                const touch2 = e.touches[1];
+                const currentDistance = Math.sqrt(
+                    Math.pow(touch2.clientX - touch1.clientX, 2) +
+                    Math.pow(touch2.clientY - touch1.clientY, 2)
+                );
+                const scale = currentDistance / initialPinchDistance;
+                zoomLevel = Math.max(0.2, Math.min(4, initialZoom * scale));
+                updateTransform();
+            }
+        });
+
+        container.addEventListener('touchend', function(e) {
+            e.preventDefault();
+            const touchDuration = Date.now() - touchStartTime;
+            
+            // Phân tích gesture
+            if (gesturePoints.length >= 3) {
+                const gesture = analyzeGesture();
+                if (gesture) {
+                    executeGesture(gesture);
+                }
+            }
+            
+            // Multi-tap detection
+            if (touchDuration < 300) {
+                touchCount++;
+                setTimeout(() => {
+                    if (touchCount === 2) {
+                        autoRotate();
+                    } else if (touchCount === 3) {
+                        createMegaExplosion();
+                    } else if (touchCount >= 4) {
+                        createUltimateExplosion();
+                    }
+                    touchCount = 0;
+                }, 300);
+            }
+            
+            isRotating = false;
+            isZooming = false;
+        });
+
+        // Gesture analysis functions
+        function analyzeGesture() {
+            if (gesturePoints.length < 3) return null;
+            
+            // Kiểm tra circle gesture
+            if (isCircularGesture()) {
+                return 'circle';
+            }
+            
+            // Kiểm tra zigzag gesture
+            if (isZigzagGesture()) {
+                return 'zigzag';
+            }
+            
+            return null;
+        }
+
+        function isCircularGesture() {
+            if (gesturePoints.length < 8) return false;
+            
+            let angleSum = 0;
+            for (let i = 1; i < gesturePoints.length - 1; i++) {
+                const p1 = gesturePoints[i - 1];
+                const p2 = gesturePoints[i];
+                const p3 = gesturePoints[i + 1];
+                
+                const angle1 = Math.atan2(p2.y - p1.y, p2.x - p1.x);
+                const angle2 = Math.atan2(p3.y - p2.y, p3.x - p2.x);
+                let angleDiff = angle2 - angle1;
+                
+                if (angleDiff > Math.PI) angleDiff -= 2 * Math.PI;
+                if (angleDiff < -Math.PI) angleDiff += 2 * Math.PI;
+                
+                angleSum += angleDiff;
+            }
+            
+            return Math.abs(angleSum) > Math.PI * 1.2;
+        }
+
+        function isZigzagGesture() {
+            if (gesturePoints.length < 6) return false;
+            
+            let directionChanges = 0;
+            let lastDirection = null;
+            
+            for (let i = 1; i < gesturePoints.length; i++) {
+                const deltaX = gesturePoints[i].x - gesturePoints[i - 1].x;
+                const currentDirection = deltaX > 0 ? 'right' : 'left';
+                
+                if (lastDirection && lastDirection !== currentDirection) {
+                    directionChanges++;
+                }
+                lastDirection = currentDirection;
+            }
+            
+            return directionChanges >= 3;
+        }
+
+        function executeGesture(gesture) {
+            switch (gesture) {
+                case 'circle':
+                    createMegaExplosion();
+                    break;
+                case 'zigzag':
+                    createUltimateExplosion();
+                    break;
+            }
+        }
+
+        // Mouse wheel support
+        container.addEventListener('wheel', function(e) {
+            e.preventDefault();
+            const delta = e.deltaY > 0 ? -0.1 : 0.1;
+            zoomLevel = Math.max(0.2, Math.min(4, zoomLevel + delta));
+            updateTransform();
+        });
+
+        // Tạo chữ rơi MEGA với 50 hướng thông minh
+        function createFlyingText() {
+            if (textCount >= maxTexts) return;
+            
+            const text = document.createElement('div');
+            const randomWord = loveWords[Math.floor(Math.random() * loveWords.length)];
+            const randomColor = colors[Math.floor(Math.random() * colors.length)];
+            
+            // Lấy hướng tối ưu cho góc hiện tại
+            const info = getOptimalDirectionsForAngle();
+            
+            let selectedAnimation;
+            if (chaosMode) {
+                // Chaos mode: random tất cả 50 hướng
+                selectedAnimation = allAnimations[Math.floor(Math.random() * allAnimations.length)];
+            } else if (megaMode) {
+                // MEGA mode: ưu tiên effects + secondary
+                const rand = Math.random();
+                if (rand < 0.4) {
+                    selectedAnimation = info.effects[Math.floor(Math.random() * info.effects.length)];
+                } else if (rand < 0.7) {
+                    selectedAnimation = info.secondary[Math.floor(Math.random() * info.secondary.length)];
+                } else {
+                    selectedAnimation = info.primary[Math.floor(Math.random() * info.primary.length)];
+                }
+            } else {
+                // Normal mode: thông minh theo góc
+                const rand = Math.random();
+                if (rand < 0.5) {
+                    selectedAnimation = info.primary[Math.floor(Math.random() * info.primary.length)];
+                } else if (rand < 0.8) {
+                    selectedAnimation = info.secondary[Math.floor(Math.random() * info.secondary.length)];
+                } else {
+                    selectedAnimation = info.effects[Math.floor(Math.random() * info.effects.length)];
+                }
+            }
+            
+            text.textContent = randomWord;
+            text.className = `flying-text ${randomColor}`;
+            
+            // Vị trí xuất phát thông minh
+            const positions = getStartPosition(selectedAnimation);
+            text.style.left = positions.left;
+            text.style.top = positions.top;
+            text.style.animationName = selectedAnimation;
+            
+            // Duration dựa trên mode
+            let baseDuration;
+            if (chaosMode) {
+                baseDuration = Math.random() * 1 + 1.5; // 1.5-2.5s
+            } else if (megaMode) {
+                baseDuration = Math.random() * 1.5 + 2; // 2-3.5s
+            } else {
+                baseDuration = Math.random() * 2 + 3; // 3-5s
+            }
+            text.style.animationDuration = baseDuration + 's';
+            
+            document.querySelector('.floating-text').appendChild(text);
+            textCount++;
+            updateCounters();
+            
+            const duration = parseFloat(text.style.animationDuration) * 1000;
+            setTimeout(() => {
+                if (text.parentNode) {
+                    text.remove();
+                    textCount--;
+                    updateCounters();
+                }
+            }, duration);
+        }
+
+        // Hàm xác định vị trí xuất phát cho 50 animations
+        function getStartPosition(animationType) {
+            const positions = { left: '50%', top: '50%' };
+            
+            // Basic directions
+            if (animationType.includes('fallFromTop')) {
+                positions.left = Math.random() * 80 + 10 + '%';
+                positions.top = '-80px';
+            } else if (animationType.includes('fallFromBottom')) {
+                positions.left = Math.random() * 80 + 10 + '%';
+                positions.top = 'calc(100% + 50px)';
+            } else if (animationType.includes('fallFromLeft')) {
+                positions.left = '-80px';
+                positions.top = Math.random() * 80 + 10 + '%';
+            } else if (animationType.includes('fallFromRight')) {
+                positions.left = 'calc(100% + 50px)';
+                positions.top = Math.random() * 80 + 10 + '%';
+            } else if (animationType.includes('fallDiagonal')) {
+                if (animationType.includes('TL')) {
+                    positions.left = '-60px'; positions.top = '-60px';
+                } else if (animationType.includes('TR')) {
+                    positions.left = 'calc(100% + 40px)'; positions.top = '-60px';
+                } else if (animationType.includes('BL')) {
+                    positions.left = '-60px'; positions.top = 'calc(100% + 40px)';
+                } else if (animationType.includes('BR')) {
+                    positions.left = 'calc(100% + 40px)'; positions.top = 'calc(100% + 40px)';
+                }
+            }
+            
+            // 3D effects
+            else if (animationType.includes('fall3D')) {
+                positions.left = Math.random() * 60 + 20 + '%';
+                positions.top = Math.random() * 60 + 20 + '%';
+            }
+            
+            // Wave effects
+            else if (animationType.includes('wave')) {
+                if (animationType.includes('Horizontal')) {
+                    positions.left = Math.random() < 0.5 ? '-80px' : 'calc(100% + 60px)';
+                    positions.top = Math.random() * 80 + 10 + '%';
+                } else if (animationType.includes('Vertical')) {
+                    positions.left = Math.random() * 80 + 10 + '%';
+                    positions.top = Math.random() < 0.5 ? '-80px' : 'calc(100% + 60px)';
+                } else {
+                    positions.left = Math.random() * 30 + '%';
+                    positions.top = Math.random() * 30 + '%';
+                }
+            }
+            
+            // Pattern effects
+            else if (animationType.includes('pattern')) {
+                positions.left = Math.random() * 60 + 20 + '%';
+                positions.top = Math.random() * 60 + 20 + '%';
+            }
+            
+            // Bounce effects
+            else if (animationType.includes('bounce')) {
+                if (animationType.includes('Center')) {
+                    positions.left = '50%'; positions.top = '-120px';
+                } else if (animationType.includes('Left')) {
+                    positions.left = '-150px';
+                    positions.top = Math.random() * 60 + 20 + '%';
+                } else if (animationType.includes('Right')) {
+                    positions.left = 'calc(100% + 130px)';
+                    positions.top = Math.random() * 60 + 20 + '%';
+                } else {
+                    positions.left = Math.random() * 80 + 10 + '%';
+                    positions.top = Math.random() < 0.5 ? '-100px' : 'calc(100% + 80px)';
+                }
+            }
+            
+            return positions;
+        }
+
+        // Tạo tim bay
+        function createHeart() {
+            if (heartCount >= maxHearts) return;
+            
+            const heart = document.createElement('div');
+            const heartTypes = ['❤️', '💕', '💖', '💗', '💝', '💘', '💞', '💓', '🧡', '💚', '💙', '💜', '🤍', '🖤', '💛'];
+            heart.textContent = heartTypes[Math.floor(Math.random() * heartTypes.length)];
+            heart.className = 'heart';
+            heart.style.left = Math.random() * 90 + 5 + '%';
+            
+            let heartDuration;
+            if (chaosMode) {
+                heartDuration = Math.random() * 1.5 + 2;
+            } else if (megaMode) {
+                heartDuration = Math.random() * 2 + 3;
+            } else {
+                heartDuration = Math.random() * 2 + 5;
+            }
+            heart.style.animationDuration = heartDuration + 's';
+            
+            document.querySelector('.floating-hearts').appendChild(heart);
+            heartCount++;
+            
+            setTimeout(() => {
+                if (heart.parentNode) {
+                    heart.remove();
+                    heartCount--;
+                }
+            }, heartDuration * 1000);
+        }
+
+        // Tạo particle system
+        function createParticleSystem() {
+            if (!particlesEnabled) return;
+            
+            const particleSystem = document.querySelector('.particle-system');
+            
+            const createParticle = () => {
+                if (particleCount >= maxParticles || !particlesEnabled) return;
+                
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                                particle.style.animationDuration = (Math.random() * 4 + 4) + 's';
+                
+                if (chaosMode) {
+                    particle.style.background = `hsl(${Math.random() * 360}, 100%, 60%)`;
+                    particle.style.animationDuration = (Math.random() * 2 + 2) + 's';
+                } else if (megaMode) {
+                    particle.style.background = `hsl(${Math.random() * 60 + 30}, 100%, 70%)`;
+                    particle.style.animationDuration = (Math.random() * 3 + 3) + 's';
+                }
+                
+                particleSystem.appendChild(particle);
+                particleCount++;
+                
+                setTimeout(() => {
+                    if (particle.parentNode) {
+                        particle.remove();
+                        particleCount--;
+                    }
+                }, parseFloat(particle.style.animationDuration) * 1000);
+            };
+            
+            // Create particles periodically
+            const particleInterval = setInterval(() => {
+                if (particlesEnabled) {
+                    createParticle();
+                } else {
+                    clearInterval(particleInterval);
+                }
+            }, chaosMode ? 100 : (megaMode ? 200 : 400));
+        }
+
+        // MEGA EXPLOSIONS
+        function createMegaExplosion() {
+            console.log('🚀 MEGA EXPLOSION ACTIVATED!');
+            
+            // Tạo 30 chữ với 15 animations khác nhau
+            for (let i = 0; i < 30; i++) {
+                setTimeout(() => {
+                    const animation = allAnimations[i % 15];
+                    createMegaText(animation);
+                }, i * 50);
+            }
+            
+            // Hearts explosion
+            for (let i = 0; i < 15; i++) {
+                setTimeout(() => createHeart(), i * 80);
+            }
+        }
+
+        function createUltimateExplosion() {
+            console.log('💥 ULTIMATE 50-DIRECTION EXPLOSION!');
+            
+            // Sử dụng TẤT CẢ 50 animations
+            allAnimations.forEach((animation, index) => {
+                setTimeout(() => {
+                    createMegaText(animation);
+                }, index * 30);
+            });
+            
+            // Ultimate hearts
+            for (let i = 0; i < 25; i++) {
+                setTimeout(() => createHeart(), i * 100);
+            }
+            
+            // Ultimate particles
+            if (particlesEnabled) {
+                for (let i = 0; i < 20; i++) {
+                    setTimeout(() => {
+                        if (particleCount < maxParticles) {
+                            const particle = document.createElement('div');
+                            particle.className = 'particle';
+                            particle.style.left = Math.random() * 100 + '%';
+                            particle.style.background = `hsl(${Math.random() * 360}, 100%, 80%)`;
+                            particle.style.animationDuration = '3s';
+                            particle.style.transform = `scale(${Math.random() * 2 + 1})`;
+                            document.querySelector('.particle-system').appendChild(particle);
+                            particleCount++;
+                            
+                            setTimeout(() => {
+                                if (particle.parentNode) {
+                                    particle.remove();
+                                    particleCount--;
+                                }
+                            }, 3000);
+                        }
+                    }, i * 150);
+                }
+            }
+        }
+
+        function createMegaText(animation) {
+            if (textCount >= maxTexts * 2) return; // Allow overflow for MEGA
+            
+            const text = document.createElement('div');
+            const randomWord = loveWords[Math.floor(Math.random() * loveWords.length)];
+            const randomColor = colors[Math.floor(Math.random() * colors.length)];
+            
+            text.textContent = randomWord;
+            text.className = `flying-text ${randomColor}`;
+            
+            const positions = getStartPosition(animation);
+            text.style.left = positions.left;
+            text.style.top = positions.top;
+            text.style.animationName = animation;
+            text.style.animationDuration = (Math.random() * 1.5 + 2) + 's';
+            
+            // MEGA effects
+            text.style.filter = 'brightness(1.5) drop-shadow(0 0 8px currentColor)';
+            text.style.fontSize = (Math.random() * 0.5 + 1) + 'rem';
+            
+            if (chaosMode) {
+                text.style.filter += ` hue-rotate(${Math.random() * 360}deg)`;
+            }
+            
+            document.querySelector('.floating-text').appendChild(text);
+            textCount++;
+            
+            setTimeout(() => {
+                if (text.parentNode) {
+                    text.remove();
+                    textCount--;
+                }
+            }, parseFloat(text.style.animationDuration) * 1000);
+        }
+
+        function createChaosText(animation) {
+            const text = document.createElement('div');
+            const randomWord = loveWords[Math.floor(Math.random() * loveWords.length)];
+            const randomColor = colors[Math.floor(Math.random() * colors.length)];
+            
+            text.textContent = randomWord;
+            text.className = `flying-text ${randomColor}`;
+            
+            const positions = getStartPosition(animation);
+            text.style.left = positions.left;
+            text.style.top = positions.top;
+            text.style.animationName = animation;
+            text.style.animationDuration = (Math.random() * 1 + 1) + 's'; // Super fast
+            
+            // Chaos effects
+            text.style.filter = `brightness(2) hue-rotate(${Math.random() * 360}deg) drop-shadow(0 0 10px currentColor)`;
+            text.style.fontSize = (Math.random() * 0.8 + 0.8) + 'rem';
+            text.style.transform = `rotate(${Math.random() * 20 - 10}deg)`;
+            
+            document.querySelector('.floating-text').appendChild(text);
+            textCount++;
+            
+            setTimeout(() => {
+                if (text.parentNode) {
+                    text.remove();
+                    textCount--;
+                }
+            }, parseFloat(text.style.animationDuration) * 1000);
+        }
+
+        // KEYBOARD CONTROLS MEGA
+        document.addEventListener('keydown', function(e) {
+            switch(e.code) {
+                case 'KeyR':
+                    resetRotation();
+                    break;
+                case 'KeyA':
+                    autoRotate();
+                    break;
+                case 'KeyC':
+                    toggleChaosMode();
+                    break;
+                case 'KeyM':
+                    toggleMegaMode();
+                    break;
+                case 'KeyP':
+                    toggleParticles();
+                    break;
+                case 'ArrowLeft':
+                    rotationY -= 18;
+                    updateTransform();
+                    break;
+                case 'ArrowRight':
+                    rotationY += 18;
+                    updateTransform();
+                    break;
+                case 'ArrowUp':
+                    currentSpeed = Math.max(20, currentSpeed - 10);
+                    updateIntervals();
+                    break;
+                case 'ArrowDown':
+                    currentSpeed = Math.min(200, currentSpeed + 10);
+                    updateIntervals();
+                    break;
+                case 'Equal':
+                case 'Plus':
+                    zoomLevel = Math.min(4, zoomLevel + 0.2);
+                    updateTransform();
+                    break;
+                case 'Minus':
+                    zoomLevel = Math.max(0.2, zoomLevel - 0.2);
+                    updateTransform();
+                    break;
+                case 'Enter':
+                    createMegaExplosion();
+                    break;
+                case 'Escape':
+                    createUltimateExplosion();
+                    break;
+                case 'Space':
+                    e.preventDefault();
+                    autoRotate();
+                    break;
+            }
+        });
+
+        // UPDATE INTERVALS
+        let textIntervalId, heartIntervalId;
+        
+        function updateIntervals() {
+            clearInterval(textIntervalId);
+            clearInterval(heartIntervalId);
+            
+            textIntervalId = setInterval(createFlyingText, currentSpeed);
+            heartIntervalId = setInterval(createHeart, currentSpeed * 3);
+        }
+
+        // PERFORMANCE MONITORING
+        let lastTime = performance.now();
+        let frameCount = 0;
+
+        function updateFPS() {
+            const now = performance.now();
+            frameCount++;
+            
+            if (now - lastTime >= 1000) {
+                fps = Math.round((frameCount * 1000) / (now - lastTime));
+                document.getElementById('fps').textContent = fps;
+                
+                // Auto quality adjustment
+                let quality = 'ULTRA';
+                if (fps < 30) {
+                    quality = 'LOW';
+                    currentSpeed = Math.max(currentSpeed, 100);
+                    maxTexts = Math.min(maxTexts, 50);
+                } else if (fps < 45) {
+                    quality = 'MID';
+                } else if (fps < 55) {
+                    quality = 'HIGH';
+                }
+                document.getElementById('quality').textContent = quality;
+                
+                frameCount = 0;
+                lastTime = now;
+            }
+            
+            requestAnimationFrame(updateFPS);
+        }
+
+        // DEVICE OPTIMIZATION
+        function optimizeForDevice() {
+            const isMobile = /iPhone|iPad|iPod|Android|BlackBerry|Opera Mini|IEMobile|WPDesktop/i.test(navigator.userAgent);
+            const isLowEnd = navigator.hardwareConcurrency < 4;
+            
+            if (isMobile) {
+                maxTexts = Math.floor(maxTexts * 0.7);
+                maxHearts = Math.floor(maxHearts * 0.7);
+                maxParticles = Math.floor(maxParticles * 0.5);
+                currentSpeed = Math.max(currentSpeed, 80);
+                
+                console.log('📱 Mobile optimization applied');
+            }
+            
+            if (isLowEnd) {
+                maxTexts = Math.floor(maxTexts * 0.6);
+                maxParticles = Math.floor(maxParticles * 0.4);
+                currentSpeed = Math.max(currentSpeed, 100);
+                
+                console.log('🔧 Low-end device optimization applied');
+            }
+        }
+
+        // SAVE/LOAD PREFERENCES
+        const preferences = {
+            save: () => {
+                const settings = {
+                    rotationY,
+                    zoomLevel,
+                    megaMode,
+                    chaosMode,
+                    particlesEnabled,
+                    currentSpeed
+                };
+                localStorage.setItem('50DirectionMegaRain', JSON.stringify(settings));
+            },
+            
+            load: () => {
+                const saved = localStorage.getItem('50DirectionMegaRain');
+                if (saved) {
+                    const settings = JSON.parse(saved);
+                    rotationY = settings.rotationY || 0;
+                    zoomLevel = settings.zoomLevel || 1;
+                    megaMode = settings.megaMode || false;
+                    chaosMode = settings.chaosMode || false;
+                    particlesEnabled = settings.particlesEnabled !== undefined ? settings.particlesEnabled : true;
+                    currentSpeed = settings.currentSpeed || 60;
+                    
+                    updateTransform();
+                    updateIntervals();
+                    
+                    // Update UI buttons
+                    if (megaMode) toggleMegaMode();
+                    if (chaosMode) toggleChaosMode();
+                    if (!particlesEnabled) toggleParticles();
+                }
+            }
+        };
+
+        // CONSOLE COMMANDS cho power users
+        window.megaCommands = {
+            explosion: createMegaExplosion,
+            ultimate: createUltimateExplosion,
+            chaos: () => toggleChaosMode(),
+            mega: () => toggleMegaMode(),
+            particles: () => toggleParticles(),
+            reset: resetRotation,
+            auto: autoRotate,
+            setSpeed: (speed) => {
+                currentSpeed = Math.max(20, Math.min(500, speed));
+                updateIntervals();
+                console.log(`🚀 Speed set to ${currentSpeed}ms`);
+            },
+            setRotation: (angle) => {
+                rotationY = angle % 360;
+                updateTransform();
+                console.log(`🎯 Rotation set to ${rotationY}°`);
+            },
+            setZoom: (zoom) => {
+                zoomLevel = Math.max(0.2, Math.min(4, zoom));
+                updateTransform();
+                console.log(`🔍 Zoom set to ${Math.round(zoomLevel * 100)}%`);
+            },
+            showAnimations: () => {
+                console.log('🎭 All 50 Animations:', allAnimations);
+                return allAnimations;
+            },
+            stats: () => ({
+                texts: textCount,
+                hearts: heartCount,
+                particles: particleCount,
+                fps: fps,
+                rotation: Math.round(rotationY),
+                zoom: Math.round(zoomLevel * 100) + '%',
+                speed: currentSpeed + 'ms',
+                sector: getOptimalDirectionsForAngle().name,
+                animations: allAnimations.length
+            }),
+            testAnimation: (animationName) => {
+                if (allAnimations.includes(animationName)) {
+                    createMegaText(animationName);
+                    console.log(`🎬 Testing animation: ${animationName}`);
+                } else {
+                    console.log(`❌ Animation not found: ${animationName}`);
+                    console.log('Available:', allAnimations);
+                }
+            },
+            bulkTest: () => {
+                console.log('🎪 Testing all 50 animations...');
+                allAnimations.forEach((anim, index) => {
+                    setTimeout(() => {
+                        createMegaText(anim);
+                        console.log(`${index + 1}/50: ${anim}`);
+                    }, index * 200);
+                });
+            }
+        };
+
+        // INITIALIZATION SEQUENCE
+        console.log('🚀 Initializing 50-Direction MEGA Love Rain...');
+        
+        // Load preferences
+        preferences.load();
+        
+        // Optimize for device
+        optimizeForDevice();
+        
+        // Start main systems
+        updateIntervals();
+        updateFPS();
+        updateTransform();
+        updateCounters();
+        
+        // Start particle system
+        if (particlesEnabled) {
+            createParticleSystem();
+        }
+        
+        // Auto-save every 3 seconds
+        setInterval(preferences.save, 3000);
+
+        // Visibility API - pause when tab hidden
+        document.addEventListener('visibilitychange', function() {
+            if (document.hidden) {
+                clearInterval(textIntervalId);
+                clearInterval(heartIntervalId);
+                if (isAutoRotating) clearInterval(autoRotateInterval);
+            } else {
+                updateIntervals();
+                if (isAutoRotating) startAutoRotate();
+            }
+        });
+
+        // FINAL SUCCESS LOG
+        setTimeout(() => {
+            console.log('✅ 50-Direction MEGA Love Rain LOADED SUCCESSFULLY!');
+            console.log('🎮 CONTROLS:');
+            console.log('  📱 Touch: Swipe(rotate), Pinch(zoom), Circle(mega), Zigzag(ultimate)');
+            console.log('  ⌨️ Keys: R(reset), A(auto), C(chaos), M(mega), P(particles)');
+            console.log('  ↕️ Arrows: ←→(rotate), ↑↓(speed), +/-(zoom)');
+            console.log('  🎯 Special: Enter(mega), Esc(ultimate), Space(auto)');
+            console.log('  💻 Console: megaCommands.help() for advanced features');
+            console.log('🌟 DIRECTIONS: 8 Basic + 10 3D + 10 Wave + 10 Pattern + 12 Bounce = 50 TOTAL');
+            console.log('📊 SECTORS: 10 intelligent sectors × 36° each');
+            console.log('🚀 MODES: Normal → MEGA → CHAOS → ULTIMATE');
+            console.log('🎨 COLORS: 15 ultra-bright colors optimized for dark background');
+            
+            if (allAnimations.length === 50) {
+                console.log('✅ All 50 animations verified and loaded!');
+            } else {
+                console.warn(`⚠️ Animation count: ${allAnimations.length}/50`);
+            }
+        }, 1000);
+
+        // Add help command
+        window.megaCommands.help = () => {
+            console.log(`
+🌟 MEGA COMMANDS HELP 🌟
+
+Basic Controls:
+- megaCommands.explosion() ↦ MEGA explosion
+- megaCommands.ultimate() ↦ ULTIMATE 50-direction blast
+- megaCommands.chaos() ↦ Toggle chaos mode
+- megaCommands.mega() ↦ Toggle mega mode
+- megaCommands.particles() ↦ Toggle particle system
+
+Advanced Controls:
+- megaCommands.setSpeed(ms) ↦ Set speed (20-500ms)
+- megaCommands.setRotation(degrees) ↦ Set rotation angle
+- megaCommands.setZoom(factor) ↦ Set zoom level (0.2-4)
+- megaCommands.testAnimation("name") ↦ Test specific animation
+- megaCommands.bulkTest() ↦ Test all 50 animations
+
+Information:
+- megaCommands.stats() ↦ Current statistics
+- megaCommands.showAnimations() ↦ List all 50 animations
+
+Example: megaCommands.setSpeed(30); megaCommands.ultimate();
+            `);
+        };
+
+        // Performance warning for 50 directions
+        if (navigator.hardwareConcurrency < 4) {
+            setTimeout(() => {
+                console.warn('⚠️ 50-direction mode detected on low-end device. Auto-optimizations applied.');
+                console.log('💡 Use megaCommands.setSpeed(100) to reduce load if needed.');
+            }, 2000);
+        }
+
+        // Easter egg countdown
+        let easterEggCode = [];
+        document.addEventListener('keydown', (e) => {
+            easterEggCode.push(e.key);
+            if (easterEggCode.length > 5) easterEggCode.shift();
+            
+            if (easterEggCode.join('').toLowerCase() === 'love$') {
+                console.log('💖 LOVE EASTER EGG ACTIVATED! 💖');
+                
+                // Create heart shower with all animations
+                for (let i = 0; i < 50; i++) {
+                    setTimeout(() => {
+                        const anim = allAnimations[i];
+                        const text = document.createElement('div');
+                        text.textContent = '💖';
+                        text.className = 'flying-text pink';
+                        text.style.fontSize = '2rem';
+                        text.style.animationName = anim;
+                        text.style.animationDuration = '3s';
+                        text.style.filter = 'brightness(2) drop-shadow(0 0 15px #ff69b4)';
+                        
+                        const pos = getStartPosition(anim);
+                        text.style.left = pos.left;
+                        text.style.top = pos.top;
+                        
+                        document.querySelector('.floating-text').appendChild(text);
+                        
+                        setTimeout(() => text.remove(), 3000);
+                    }, i * 60);
+                }
+                
+                easterEggCode = [];
+            }
+        });
+
+    </script>
+</body>
+</html>
+
+
